@@ -1,5 +1,6 @@
 """Simple AI API client for OpenAI, GenAI, and Anthropic."""
 import base64
+from datetime import datetime
 import time
 
 import google.generativeai as genai
@@ -103,31 +104,62 @@ class AiApiClient:
             answer = chat_completion
 
         if self.api == 'genai':
-            model = genai.GenerativeModel(model)
+            model_obj = genai.GenerativeModel(model)
             images = []
             for img_path in self.image_resources:
                 image_file = genai.upload_file(path=img_path)
                 images.append(image_file)
 
-            response = model.generate_content([prompt] + images)
+            response = model_obj.generate_content([prompt] + images)
             answer = response
 
         if self.api == 'anthropic':
+            # Anthropic supports images via base64 inline embedding
+            content = [{"type": "text", "text": prompt}]
+            for img_path in self.image_resources:
+                with open(img_path, "rb") as image_file:
+                    base64_image = base64.b64encode(image_file.read()).decode("utf-8")
+                    content.append({
+                        "type": "image",
+                        "source": {
+                            "type": "base64",
+                            "media_type": "image/jpeg",
+                            "data": base64_image
+                        }
+                    })
+
             message = self.api_client.messages.create(
                 max_tokens=1024,
-                messages=[
-                    {
-                        "role": "user",
-                        "content": prompt,
-                    }
-                ],
+                messages=[{
+                    "role": "user",
+                    "content": content,
+                }],
                 model=model,
             )
             answer = message
 
         end_time = time.time()
         elapsed_time = end_time - prompt_start
-        return answer, elapsed_time
+        return self.create_answer(answer, elapsed_time, model)
+
+    def create_answer(self, response, elapsed_time, model):
+        """Create the response object."""
+        answer = {
+            'provider': self.api,
+            'model': model,
+            'test_time': elapsed_time,
+            'execution_time': datetime.now().isoformat(),
+            'response_text': ""
+        }
+
+        if self.api == 'openai':
+            answer['response_text'] = response.choices[0].message.content
+        elif self.api == 'genai':
+            answer['response_text'] = response.text
+        elif self.api == 'anthropic':
+            answer['response_text'] = response.choices[0].content
+
+        return answer
 
     def get_model_list(self):
         """Get the list of available models."""

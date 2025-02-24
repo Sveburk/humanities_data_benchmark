@@ -1,0 +1,3 @@
+id,name,provider,model,role_description,legacy_test
+T2,test_benchmark2,genai,gemini-2.0-flash,You are an assistant,false
+T1,test_benchmark2,openai,gpt-4o,You are an assistant,false

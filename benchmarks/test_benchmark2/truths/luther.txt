@@ -1,0 +1,6 @@
+{
+"persons_mentioned": ["Martin Luther", "Pope Leo X", "Johann Tetzel"],
+"places_mentioned": ["Wittenberg", "Rome"],
+"general_topic": "Critique of the Catholic Church's sale of indulgences and calls for theological reform.",
+"important_dates": ["October 31, 1517"]
+}
