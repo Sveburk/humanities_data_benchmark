@@ -2,6 +2,7 @@
 import json
 import os
 import re
+import tempfile
 from datetime import datetime
 from PIL import Image
 
@@ -10,7 +11,7 @@ from simple_ai_clients import AiApiClient
 class Benchmark:
     """ Base class for all benchmark workflows. """
 
-    def __init__(self, name, benchmark_dir, provider, model, api_key, role_description):
+    def __init__(self, name, benchmark_dir, provider, model, api_key, role_description, prompt_file):
         """ Initialize the benchmark. """
 
         self.name = name
@@ -19,6 +20,7 @@ class Benchmark:
         self.model = model
         self.api_key = api_key
         self.role_description = role_description
+        self.prompt_file = prompt_file
         self.prompt = self.load_prompt()
         self.client = AiApiClient(api=self.provider,
                                   api_key=self.api_key,
@@ -26,22 +28,18 @@ class Benchmark:
 
     def load_prompt(self):
         """ Load the prompt from the benchmark directory. """
-        prompt_path = os.path.join(self.benchmark_dir, 'prompt.txt')
+        prompt_path = os.path.join(self.benchmark_dir, "prompts", self.prompt_file)
         with open(prompt_path, 'r') as f:
             return f.read()
 
     @staticmethod
-    def resize_image(image_path, max_size=(1024, 1024)):
+    def resize_image(image_path, temp_dir, max_size=(1024, 1024)):
         img = Image.open(image_path)
         img.thumbnail(max_size)
 
-        # Correctly build resized filename
-        directory, filename = os.path.split(image_path)
-        name, ext = os.path.splitext(filename)
-        resized_filename = f"{name}_small{ext}"
-        resized_path = os.path.join(directory, resized_filename)
+        filename = os.path.basename(image_path)
+        resized_path = os.path.join(temp_dir, filename)
 
-        # Save resized image
         img.save(resized_path, optimize=True, quality=85)
         return resized_path
 
@@ -49,13 +47,21 @@ class Benchmark:
         self.client.clear_image_resources()
 
         if self.resize_images():
-            image_paths = [self.resize_image(image_path) for image_path in image_paths]
+            with tempfile.TemporaryDirectory() as temp_dir:
+                resized_images = [
+                    self.resize_image(image_path, temp_dir)
+                    for image_path in image_paths
+                ]
 
-        for image_path in image_paths:
-            self.client.add_image_resource(image_path)
+                for resized_image_path in resized_images:
+                    self.client.add_image_resource(resized_image_path)
 
-        return self.client.prompt(model=self.model,
-                                  prompt=self.prompt)
+                return self.client.prompt(model=self.model, prompt=self.prompt)
+        else:
+            for image_path in image_paths:
+                self.client.add_image_resource(image_path)
+
+            return self.client.prompt(model=self.model, prompt=self.prompt)
 
     def save_answer(self, image_name, answer):
         date_str = datetime.now().strftime('%Y-%m-%d')
@@ -71,13 +77,21 @@ class Benchmark:
     def prepare_scoring_data(self, image_name, answer):
         if "response_text" in answer:
             response_text = answer["response_text"]
+            json_text = None
             if self.convert_result_to_json() and response_text.startswith("```json"):
-               json_text = response_text[6:3]
-               try:
-                    return json.loads(json_text)
-               except json.JSONDecodeError:
-                    return {}
-        return {}
+                json_match = re.search(r'```json\s*(\{.*?\})\s*```', response_text, re.DOTALL)
+                if json_match:
+                    json_text = json_match.group(1)
+
+            if json_text is None:
+                json_text = response_text
+
+            try:
+                return json.loads(json_text)
+            except json.JSONDecodeError:
+                return {"error": "Invalid JSON format."}
+
+        return {"error": "No response text found."}
 
     def score_answer(self, image_name, answer):
         return {"total": 0}

@@ -2,13 +2,24 @@ import csv
 import importlib
 import os
 import sys
+import logging
 from benchmark_base import Benchmark
 from dotenv import load_dotenv
 
 # Add project root to sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
 load_dotenv()
+
+log_level = os.getenv('LOG_LEVEL', 'INFO').upper()
+
+logging.basicConfig(
+    level=log_level,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S'
+)
+
+logger = logging.getLogger(__name__)
+
 
 BENCHMARKS_DIR = '../benchmarks'
 CONFIG_FILE = os.path.join(BENCHMARKS_DIR, 'benchmarks.csv')
@@ -24,26 +35,26 @@ def load_benchmark(test_config):
     provider = test_config['provider']
     model = test_config['model']
     role_description = test_config.get('role_description', "A useful assistant that can help you with a variety of tasks.")
+    prompt_file = test_config.get('prompt_file', 'prompt.txt')
     api_key = get_api_key(provider)
     benchmark_path = os.path.join(BENCHMARKS_DIR, benchmark_name)
 
     benchmark_file = os.path.join(benchmark_path, 'benchmark.py')
-    print(f"Checking for benchmark file: {benchmark_file}")
+
     if os.path.isfile(benchmark_file):
-        print("-------------------> Benchmark file found")
         spec = importlib.util.spec_from_file_location("benchmark_module", benchmark_file)
         benchmark_module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(benchmark_module)
         # Class must have the same name as the benchmark folder but in CamelCase
         class_name = ''.join(part.capitalize() for part in benchmark_name.split('_'))
         benchmark_class = getattr(benchmark_module, class_name)
-        return benchmark_class(benchmark_name, benchmark_path, provider, model, api_key, role_description)
+        return benchmark_class(benchmark_name, benchmark_path, provider, model, api_key, role_description, prompt_file)
     else:
-        return Benchmark(benchmark_name, benchmark_path, provider, model, api_key, role_description)
+        return Benchmark(benchmark_name, benchmark_path, provider, model, api_key, role_description, prompt_file)
 
 def run_single_test(test_config):
     benchmark = load_benchmark(test_config)
-    print(f"Running {benchmark.title}...")
+    logger.info(f"Running {benchmark.title}...")
     benchmark.run()
 
 
@@ -56,11 +67,6 @@ def main():
         for test in tests:
             if test.get('legacy_test', 'false').lower() == 'false':
                 run_single_test(test)
-                provider_model = f"{test['provider']}/{test['model']}"
-                provider_model_md = f"{test['provider']}_{test['model'].replace('-', '_')}"
-                result_path = f"benchmarks/{test['name']}/result_table_{provider_model_md}.md"
-                result_entry = f"- [{test['name']} ({provider_model}) results]({result_path})"
-                all_results.append(result_entry)
 
     with open('../README.md', 'w') as readme:
         readme.write("# Benchmark Results\n\n")
