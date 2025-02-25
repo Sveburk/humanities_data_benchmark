@@ -147,8 +147,9 @@ class Benchmark:
 
     def save_render(self, image_name, render):
         self.request_render = render
+        date_str = datetime.now().strftime('%Y-%m-%d')
         filename = f"{self.get_request_name(image_name)}.md"
-        save_path = os.path.join(self.benchmark_dir, 'renders')
+        save_path = os.path.join(self.benchmark_dir, date_str, 'renders')
         os.makedirs(save_path, exist_ok=True)
         with open(os.path.join(save_path, filename), 'w', encoding='utf-8') as f:
             f.write(render)
