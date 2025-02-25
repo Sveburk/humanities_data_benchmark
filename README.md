@@ -61,6 +61,17 @@ named like so: `image1.(txt|json)`.
 This setup will enable you to add configurations to the ```benchmarcks.csv``` file and run the benchmark with different
 LLMs, prompts, and configurations.
 
+### API Keys
+To use the benchmark suite, you need to provide API keys for the different providers.
+- Create a `.env` file in the root directory of the repository.
+- Add the following lines to the `.env` file:
+
+```bash
+OPENAI_API_KEY=<your_openai_api_key>
+GENAI_API_KEY=<your_genai_api_key>
+ANTHROPIC_API_KEY=<your_anthropic_api_key>
+```
+
 ### Add Configuration
 To add a configuration, you need to add a new row to the `benchmarks.csv` file. The file has the following structure:
 

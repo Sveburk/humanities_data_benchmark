@@ -20,17 +20,19 @@ logging.basicConfig(
 
 logger = logging.getLogger(__name__)
 
-
 BENCHMARKS_DIR = '../benchmarks'
 CONFIG_FILE = os.path.join(BENCHMARKS_DIR, 'benchmarks.csv')
 
 def get_api_key(provider):
+    """Get the API key for the provider."""
     api_key = os.getenv(f'{provider.upper()}_API_KEY')
     if not api_key:
         raise ValueError(f"No API key found for {provider.upper()}")
     return api_key
 
+
 def load_benchmark(test_config):
+    """Load the benchmark class from the benchmark folder."""
     benchmark_name = test_config['name']
     provider = test_config['provider']
     model = test_config['model']
@@ -48,29 +50,68 @@ def load_benchmark(test_config):
         # Class must have the same name as the benchmark folder but in CamelCase
         class_name = ''.join(part.capitalize() for part in benchmark_name.split('_'))
         benchmark_class = getattr(benchmark_module, class_name)
+        logger.info(f"Loaded {benchmark_name} from {benchmark_file}")
         return benchmark_class(benchmark_name, benchmark_path, provider, model, api_key, role_description, prompt_file)
     else:
+        logger.info(f"Loaded {benchmark_name} from Benchmark class")
         return Benchmark(benchmark_name, benchmark_path, provider, model, api_key, role_description, prompt_file)
 
+
+def create_result_table(results):
+    # First, gather all possible scores to handle missing data
+    scores = set()
+    for val in results.values():
+        scores.update(val.keys())
+
+    scores = sorted(scores)
+
+    # Create header
+    header = "key | " + " | ".join(scores)
+    separator = " | ".join(['---'] * (len(scores) + 1))
+
+    # Build rows
+    rows = []
+    for key, val in results.items():
+        row = [key]
+        for score in scores:
+            row.append(str(val.get(score, '-')))
+        rows.append(" | ".join(row))
+
+    # Combine everything
+    md_table = f"{header}\n{separator}\n" + "\n".join(rows)
+
+    table_path = os.path.join("..", "benchmarks", 'result_table.md')
+    with open(table_path, 'w', encoding='utf-8') as f:
+        f.write(md_table)
+
+
 def run_single_test(test_config):
+    """Run a single test."""
     benchmark = load_benchmark(test_config)
     logger.info(f"Running {benchmark.title}...")
-    benchmark.run()
+    return benchmark.run()
 
 
 def main():
-    all_results = []
-
     # Open Config File and run each test in it
     with open(CONFIG_FILE, newline='', encoding='utf-8') as csvfile:
         tests = csv.DictReader(csvfile)
+        all_results = {}
         for test in tests:
             if test.get('legacy_test', 'false').lower() == 'false':
-                run_single_test(test)
+                results = run_single_test(test)
+                all_results.update(results)
+        create_result_table(all_results)
 
-    with open('../README.md', 'w') as readme:
-        readme.write("# Benchmark Results\n\n")
-        readme.write("\n".join(all_results))
+    ### Single Test
+    # test_config = {
+    #     'name': 'folder_name',
+    #     'provider': 'openai',
+    #     'model': 'gpt-40',
+    #     'role_description': 'A useful assistant that can help you with a variety of tasks.',
+    #     'prompt_file': 'prompt.txt'
+    # }
+    # run_single_test(test_config)
 
 if __name__ == "__main__":
     main()

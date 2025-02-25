@@ -22,6 +22,7 @@ class Benchmark:
         self.role_description = role_description
         self.prompt_file = prompt_file
         self.prompt = self.load_prompt()
+        self.request_render = ""
         self.client = AiApiClient(api=self.provider,
                                   api_key=self.api_key,
                                   gpt_role_description=self.role_description)
@@ -82,13 +83,13 @@ class Benchmark:
         save_path = os.path.join(self.benchmark_dir, 'results', date_str)
         os.makedirs(save_path, exist_ok=True)
 
-        test_id = f"{self.provider}_{self.model}".replace('-', '_')
-        file_name = f"{self.get_image_base_name(image_name)}_{test_id}.{self.get_output_format}"
+        file_name = f"{self.get_request_name(image_name)}.{self.get_output_format}"
 
         with open(os.path.join(save_path, file_name), 'w', encoding='utf-8') as f:
             json.dump(answer, f)
 
     def prepare_scoring_data(self, answer):
+        """ Prepare the data for scoring. """
         if "response_text" in answer:
             response_text = answer["response_text"]
             json_text = None
@@ -107,23 +108,21 @@ class Benchmark:
 
         return {"error": "No response text found."}
 
-    def create_render(self, image_name, result):
-        image_base_name = self.get_image_base_name(image_name)
-        return f"| {image_base_name} |\n"
+    def create_request_render(self, image_name, result, score, truth):
+        return ""
 
-    def update_result_table(self, rendered_results):
-        table_path = os.path.join(self.benchmark_dir, 'result_table.md')
-        with open(table_path, 'w', encoding='utf-8') as f:
-            f.write("| Image | Truth | Answer | Prompt | Score |\n")
-            f.write("|-------|-------|--------|-------|-------|\n")
-            f.writelines(rendered_results)
+    def save_render(self, image_name, render):
+        self.request_render = render
+        filename = f"{self.get_request_name(image_name)}.md"
+        save_path = os.path.join(self.benchmark_dir, 'renders')
+        os.makedirs(save_path, exist_ok=True)
+        with open(os.path.join(save_path, filename), 'w', encoding='utf-8') as f:
+            f.write(render)
 
     def run(self):
-        """Run the benchmark, supporting multi-image prompts."""
+        """Run the benchmark."""
         images_dir = os.path.join(self.benchmark_dir, 'images')
         image_files = sorted(os.listdir(images_dir))
-
-        rendered_results = []
         processed_images = set()
 
         # Group images by request
@@ -147,21 +146,28 @@ class Benchmark:
                 processed_images.add(image_file)
 
         # Process each image group
+        all_results = {}
         for request_id, img_files in image_groups.items():
             image_paths = [os.path.join(images_dir, img) for img in img_files]
 
             answer = self.ask_llm(image_paths)
             self.save_answer(request_id, answer)
             ground_truth = self.load_ground_truth(request_id)
-            result = self.score_answer(request_id, answer, ground_truth)
-            render = self.create_render(request_id, result)
-            rendered_results.append(render)
+            score = self.score_answer(request_id, answer, ground_truth)
+            all_results[self.get_request_name(request_id)] = score
+            render = self.create_request_render(request_id, answer, score, ground_truth)
+            self.save_render(request_id, render)
 
-        self.update_result_table(rendered_results)
+        return all_results
 
     @staticmethod
     def get_image_base_name(image_name):
         return os.path.splitext(image_name)[0]
+
+    def get_request_name(self, image_name):
+        name = self.get_image_base_name(image_name) + f"_{self.provider}_{self.model}_{self.prompt_file}"
+        name = name.replace(" ", "_").replace("-", "_").replace(".", "_")
+        return name
 
     def score_answer(self, image_name, response, ground_truth):
         return {"total": 0}
