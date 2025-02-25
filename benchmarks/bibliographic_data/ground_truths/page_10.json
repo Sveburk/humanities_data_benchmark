@@ -1,0 +1,269 @@
+{
+  "metadata": {
+    "title": "BIBLIOGRAPHY",
+    "year": "1947",
+    "page_number": 9
+  },
+  "entries": [
+    {
+      "id": "140",
+      "type": "book",
+      "title": "Why We Read History",
+      "author": [
+        { "family": "Smellie", "given": "K. B." }
+      ],
+      "publisher": "P. Elek",
+      "publisher-place": "London",
+      "issued": 1947
+    },
+    {
+      "id": "141",
+      "type": "book",
+      "title": "A Study of History",
+      "author": [
+        { "family": "Toynbee", "given": "Arnold J." }
+      ],
+      "publisher": "Oxford",
+      "publisher-place": "New York",
+      "note": "Abridged by D. C. Somervell. Abridgement of vols. I-VI of A Study of History.",
+      "issued": 1947
+    },
+    {
+      "id": "142",
+      "type": "book",
+      "title": "In den spiegel van het verleden: historische opstellen",
+      "author": [
+        { "family": "Verberne", "given": "L. G. J." }
+      ],
+      "publisher": "Bruna",
+      "publisher-place": "Utrecht, Antwerpen",
+      "issued": 1947
+    },
+    {
+      "id": "143",
+      "type": "book",
+      "title": "Esquemas de metodología eclesiástica",
+      "author": [
+        { "family": "Vevir", "given": "José" }
+      ],
+      "publisher": "Instituto",
+      "publisher-place": "Barcelona",
+      "issued": 1947
+    },
+    {
+      "id": "144",
+      "type": "book",
+      "title": "Sinn und Ziel der Geschichte",
+      "author": [
+        { "family": "Walz", "given": "Hans H." }
+      ],
+      "publisher": "Universitäts-Verlag",
+      "publisher-place": "Bonn",
+      "issued": 1947
+    },
+    {
+      "id": "145",
+      "type": "book",
+      "title": "Atti del congresso internazionale di filosofia",
+      "event-date": "1946-11-15/1946-11-20",
+      "publisher": "Castellani",
+      "publisher-place": "Milano",
+      "issued": 1947,
+      "note": "Mentions relevant articles.",
+      "related": [
+        {
+          "id": "146",
+          "type": "article-journal",
+          "title": "Storia e materialismo storico",
+          "author": [
+            { "family": "Drago", "given": "Pietro C." }
+          ],
+          "volume": "I",
+          "page": "109-117",
+          "relation": {
+            "part-of": "145"
+          }
+        },
+        {
+          "id": "147",
+          "type": "article-journal",
+          "title": "Critica del giudizio storico",
+          "author": [
+            { "family": "Fazio-Allmayer", "given": "Vito" }
+          ],
+          "volume": "I",
+          "page": "281-290",
+          "relation": {
+            "part-of": "145"
+          }
+        },
+        {
+          "id": "148",
+          "type": "article-journal",
+          "title": "Forza e spirito nella storia",
+          "author": [
+            { "family": "Nyman", "given": "A." }
+          ],
+          "volume": "I",
+          "page": "191-200",
+          "relation": {
+            "part-of": "145"
+          }
+        }
+      ]
+    },
+    {
+      "id": "149",
+      "type": "article-journal",
+      "title": "Sur le concept d'histoire",
+      "author": [
+        { "family": "Benjamin", "given": "Walter" }
+      ],
+      "container-title": "Les temps modernes",
+      "volume": "II",
+      "page": "623-634",
+      "issued": 1947
+    },
+    {
+      "id": "150",
+      "type": "chapter",
+      "title": "Philosophy of History",
+      "author": [
+        { "family": "Boodin", "given": "John E." }
+      ],
+      "container-title": "Twentieth Century Philosophy",
+      "editor": [
+        { "family": "Runes", "given": "Dagobert D." }
+      ],
+      "publisher": "Philosophical Library",
+      "publisher-place": "New York",
+      "page": "89-106",
+      "issued": 1947
+    },
+    {
+      "id": "151",
+      "type": "article-journal",
+      "title": "De la perception à l'histoire. La philosophie de M. Merleau-Ponty",
+      "author": [
+        { "family": "Caillois", "given": "R. P." }
+      ],
+      "container-title": "Deucalion",
+      "volume": "II",
+      "page": "57-85",
+      "issued": 1947
+    },
+    {
+      "id": "152",
+      "type": "article-journal",
+      "title": "Commemorazione di Adolfo Omodeo",
+      "author": [
+        { "family": "Cantimori", "given": "Delio" }
+      ],
+      "container-title": "Annali della Scuola Normale di Pisa",
+      "fascicle": "3-4",
+      "reprint": {
+        "title": "Studi di storia",
+        "publisher": "Einaudi",
+        "publisher-place": "Torino",
+        "issued": 1959
+      },
+      "issued": 1947
+    },
+    {
+      "id": "153",
+      "type": "article-journal",
+      "title": "The Historian and the Philosophy of Science",
+      "author": [
+        { "family": "Cowan", "given": "Thomas" }
+      ],
+      "container-title": "Isis",
+      "volume": "XXXVIII",
+      "page": "11-18",
+      "issued": 1947
+    },
+    {
+      "id": "154",
+      "type": "article-journal",
+      "title": "History as a Science",
+      "author": [
+        { "family": "Crawford", "given": "R. M." }
+      ],
+      "container-title": "Historical Studies: Australia and New Zealand",
+      "volume": "III",
+      "page": "153-175",
+      "issued": 1947
+    },
+    {
+      "id": "155",
+      "type": "article-journal",
+      "title": "Christianisme et histoire",
+      "author": [
+        { "family": "Daniélou", "given": "J." }
+      ],
+      "container-title": "Etudes",
+      "volume": "CCLIV",
+      "page": "166-184",
+      "issued": 1947
+    },
+    {
+      "id": "156",
+      "type": "article-journal",
+      "title": "Wahrheit der Geschichte. Geschichte der Wahrheit",
+      "author": [
+        { "family": "Dell", "given": "Stanley" }
+      ],
+      "container-title": "Amerikanische Rundschau",
+      "volume": "III",
+      "page": "44-53",
+      "issued": 1947
+    },
+    {
+      "id": "157",
+      "type": "article-journal",
+      "title": "The Idea of Progress",
+      "author": [
+        { "family": "Fay", "given": "Sidney B." }
+      ],
+      "container-title": "American Historical Review",
+      "volume": "LII",
+      "page": "231-246",
+      "issued": 1947
+    },
+    {
+      "id": "158",
+      "type": "article-journal",
+      "title": "Théologie et histoire",
+      "author": [
+        { "family": "Fessard", "given": "Gaston" }
+      ],
+      "container-title": "Dieu vivant",
+      "volume": "VIII",
+      "page": "39-65",
+      "issued": 1947
+    },
+    {
+      "id": "159",
+      "type": "article-journal",
+      "title": "Acton, Creighton, and Lea: a Study in History and Ethics",
+      "author": [
+        { "family": "Fish", "given": "Andrew" }
+      ],
+      "container-title": "Pacific Historical Review",
+      "volume": "XVI",
+      "page": "59-69",
+      "issued": 1947
+    },
+    {
+      "id": "160",
+      "type": "article-journal",
+      "title": "Le conscience historique en Italie",
+      "author": [
+        { "family": "Garosci", "given": "A." }
+      ],
+      "container-title": "Les temps modernes",
+      "volume": "III",
+      "page": "23-24",
+      "issued": 1947
+    }
+  ]
+}

@@ -34,13 +34,8 @@ def get_api_key(provider):
 def load_benchmark(test_config):
     """Load the benchmark class from the benchmark folder."""
     benchmark_name = test_config['name']
-    provider = test_config['provider']
-    model = test_config['model']
-    role_description = test_config.get('role_description', "A useful assistant that can help you with a variety of tasks.")
-    prompt_file = test_config.get('prompt_file', 'prompt.txt')
-    api_key = get_api_key(provider)
+    api_key = get_api_key(test_config['provider'])
     benchmark_path = os.path.join(BENCHMARKS_DIR, benchmark_name)
-
     benchmark_file = os.path.join(benchmark_path, 'benchmark.py')
 
     if os.path.isfile(benchmark_file):
@@ -51,10 +46,10 @@ def load_benchmark(test_config):
         class_name = ''.join(part.capitalize() for part in benchmark_name.split('_'))
         benchmark_class = getattr(benchmark_module, class_name)
         logger.info(f"Loaded {benchmark_name} from {benchmark_file}")
-        return benchmark_class(benchmark_name, benchmark_path, provider, model, api_key, role_description, prompt_file)
+        return benchmark_class(test_config, api_key, benchmark_path)
     else:
         logger.info(f"Loaded {benchmark_name} from Benchmark class")
-        return Benchmark(benchmark_name, benchmark_path, provider, model, api_key, role_description, prompt_file)
+        return Benchmark(test_config, api_key, benchmark_path)
 
 
 def create_result_table(results):
@@ -108,6 +103,7 @@ def main():
     #     'name': 'folder_name',
     #     'provider': 'openai',
     #     'model': 'gpt-40',
+    #     '
     #     'role_description': 'A useful assistant that can help you with a variety of tasks.',
     #     'prompt_file': 'prompt.txt'
     # }

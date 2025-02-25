@@ -11,16 +11,16 @@ from simple_ai_clients import AiApiClient
 class Benchmark:
     """ Base class for all benchmark workflows. """
 
-    def __init__(self, name, benchmark_dir, provider, model, api_key, role_description, prompt_file):
+    def __init__(self, config, api_key, benchmark_directory):
         """ Initialize the benchmark. """
 
-        self.name = name
-        self.benchmark_dir = benchmark_dir
-        self.provider = provider
-        self.model = model
+        self.name = config['name']
+        self.benchmark_dir = benchmark_directory
+        self.provider = config['provider']
+        self.model = config['model']
         self.api_key = api_key
-        self.role_description = role_description
-        self.prompt_file = prompt_file
+        self.role_description = config['role_description']
+        self.prompt_file = config['prompt_file']
         self.prompt = self.load_prompt()
         self.request_render = ""
         self.client = AiApiClient(api=self.provider,

@@ -8,6 +8,8 @@ of LLMs on DH-related tasks.
 The repository contains the following datasets:
 - [**Test Benchmark 1**](benchmarks/test_benchmark/README.md): A simple workflow without any additional configuration.
 - [**Test Benchmark 2**](benchmarks/test_benchmark2/README.md): A simple workflow with configured Benchmark class.
+- [**Bibliographic Data**](benchmarks/bibliographic_data/README.md): A benchmark for extracting bibliographic data from images.
+
 
 ## Evaluation
 

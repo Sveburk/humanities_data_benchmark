@@ -1,3 +1,4 @@
-name,provider,model,role_description,prompt_file,legacy_test
-test_benchmark,genai,gemini-2.0-flash,You are a Historian,prompt.txt,false
-test_benchmark2,genai,gemini-2.0-flash,You are a Historian,prompt2.txt,false
+id,name,provider,model,response_format,temperature,role_description,prompt_file,legacy_test
+B1,test_benchmark,genai,gemini-2.0-flash,default,0.5,You are a Historian,prompt.txt,false
+B2,test_benchmark2,genai,gemini-2.0-flash,default,0.5,You are a Historian,prompt2.txt,false
+B3,bibliographic_data,genai,gemini-2.0-flash,Document,0.0,You are a Historian,prompt.txt,false
