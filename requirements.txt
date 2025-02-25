@@ -5,3 +5,5 @@ anthropic~=0.46.0
 dotenv~=0.9.9
 python-dotenv~=1.0.1
 pillow~=11.1.0
+pydantic~=2.10.6
+RapidFuzz~=3.12.1

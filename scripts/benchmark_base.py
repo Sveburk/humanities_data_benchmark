@@ -7,6 +7,7 @@ import tempfile
 from datetime import datetime
 from PIL import Image
 
+from scoring_helper import remove_none
 from simple_ai_clients import AiApiClient
 
 class Benchmark:
@@ -27,15 +28,23 @@ class Benchmark:
         self.dataclass_name = config['dataclass']
         self.dataclass = self.load_dataclass()
 
-        self.client = AiApiClient(api=self.provider,
-                                  api_key=self.api_key,
-                                  gpt_role_description=self.role_description)
+        kwargs = {
+            "api": self.provider,
+            "api_key": self.api_key,
+            "gpt_role_description": self.role_description,
+        }
+        if self.dataclass:
+            kwargs["dataclass"] = self.dataclass
+
+        self.client = AiApiClient(**kwargs)
 
     def load_prompt(self):
         """ Load the prompt from the benchmark directory. """
         prompt_path = os.path.join(self.benchmark_dir, "prompts", self.prompt_file)
         with open(prompt_path, 'r') as f:
-            return f.read()
+            raw_prompt = f.read()
+            prompt = raw_prompt.format(page_number=111)
+            return prompt
 
     def load_dataclass(self):
         """ Dynamically load a dataclass from dataclass.py """
@@ -54,10 +63,13 @@ class Benchmark:
         ground_truth_path = os.path.join(self.benchmark_dir, "ground_truths", f"{image_name}.json")
         try:
             with open(ground_truth_path, 'r') as f:
-                return json.load(f)
+                content = f.read().strip()
+                if not content:
+                    return {"error": "Ground truth file is empty."}
+                return json.loads(content)
         except FileNotFoundError:
             return {"error": f"Ground truth not found: {image_name}"}
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
             return {"error": "Invalid JSON format."}
 
     @staticmethod
@@ -109,7 +121,7 @@ class Benchmark:
         if "response_text" in answer:
             response_text = answer["response_text"]
             json_text = None
-            if self.convert_result_to_json and response_text.startswith("```json"):
+            if self.convert_result_to_json and "```json" in response_text:
                 json_match = re.search(r'```json\s*(\{.*?\})\s*```', response_text, re.DOTALL)
                 if json_match:
                     json_text = json_match.group(1)
@@ -117,9 +129,15 @@ class Benchmark:
             if json_text is None:
                 json_text = response_text
 
+            if isinstance(json_text, dict):
+                return json_text
+
             try:
-                return json.loads(json_text)
-            except json.JSONDecodeError:
+                json_dict = json.loads(json_text)
+                if self.remove_none_values:
+                    return remove_none(json_dict)
+                return json_dict
+            except json.JSONDecodeError as e:
                 return {"error": "Invalid JSON format."}
 
         return {"error": "No response text found."}
@@ -189,6 +207,11 @@ class Benchmark:
         return {"total": 0}
 
     @property
+    def remove_none_values(self):
+        """If True, remove None values from the response before scoring."""
+        return True
+
+    @property
     def convert_result_to_json(self):
         """If the result is a JSON string, convert it to a JSON object."""
         return True
@@ -196,7 +219,7 @@ class Benchmark:
     @property
     def resize_images(self):
         """If images are too large, resize them before sending to the model."""
-        return True
+        return False
 
     @property
     def get_page_part_regex(self):

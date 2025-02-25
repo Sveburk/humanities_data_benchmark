@@ -1,12 +1,12 @@
 """Simple AI API client for OpenAI, GenAI, and Anthropic."""
 import base64
+from dataclasses import asdict
 from datetime import datetime
 import time
 
 import google.generativeai as genai
 from openai import OpenAI
 from anthropic import Anthropic
-
 
 class AiApiClient:
     """Simple AI API client for OpenAI, GenAI, and Anthropic."""
@@ -104,7 +104,7 @@ class AiApiClient:
                 "temperature": self.temperature
             }
             if self.dataclass:
-                kwargs["dataclass"] = self.dataclass
+                kwargs["response_format"] = self.dataclass
 
             chat_completion = self.api_client.beta.chat.completions.parse(**kwargs)
             answer = chat_completion
@@ -155,11 +155,18 @@ class AiApiClient:
             'model': model,
             'test_time': elapsed_time,
             'execution_time': datetime.now().isoformat(),
-            'response_text': ""
+            'response_text': "",
+            'scores': {},
         }
 
         if self.api == 'openai':
-            answer['response_text'] = response.choices[0].message.content
+            if self.dataclass:
+                print("------------> Using dataclass")
+                text = response.choices[0].message.parsed
+                answer['response_text'] = asdict(text)
+            else:
+                print("------------> Not using dataclass")
+                answer['response_text'] = response.choices[0].message.content
         elif self.api == 'genai':
             answer['response_text'] = response.text
         elif self.api == 'anthropic':
