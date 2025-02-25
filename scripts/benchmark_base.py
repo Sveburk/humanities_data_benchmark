@@ -1,4 +1,5 @@
 """ This module contains the base class for all benchmark workflows. """
+import importlib
 import json
 import os
 import re
@@ -23,6 +24,9 @@ class Benchmark:
         self.prompt_file = config['prompt_file']
         self.prompt = self.load_prompt()
         self.request_render = ""
+        self.dataclass_name = config['dataclass']
+        self.dataclass = self.load_dataclass()
+
         self.client = AiApiClient(api=self.provider,
                                   api_key=self.api_key,
                                   gpt_role_description=self.role_description)
@@ -32,6 +36,18 @@ class Benchmark:
         prompt_path = os.path.join(self.benchmark_dir, "prompts", self.prompt_file)
         with open(prompt_path, 'r') as f:
             return f.read()
+
+    def load_dataclass(self):
+        """ Dynamically load a dataclass from dataclass.py """
+        class_name = self.dataclass_name
+        if class_name is None or class_name == "default" or class_name == "":
+            return None
+
+        try:
+            dataclass_module = importlib.import_module(f"benchmarks.{self.name}.dataclass")
+            return getattr(dataclass_module, class_name)
+        except (ImportError, AttributeError) as e:
+            raise ImportError(f"Could not load dataclass {class_name}: {e}")
 
     def load_ground_truth(self, image_name):
         """ Load the ground truth from the benchmark directory. """

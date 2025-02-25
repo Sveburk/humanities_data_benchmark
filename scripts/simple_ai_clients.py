@@ -17,11 +17,12 @@ class AiApiClient:
 
     api_client = None
     image_resources = []
+    dataclass = None
 
     init_time = None
     end_time = None
 
-    def __init__(self, api, api_key, gpt_role_description=None, temperature=0.5):
+    def __init__(self, api, api_key, gpt_role_description=None, dataclass=None, temperature=0.5):
         if api not in self.SUPPORTED_APIS:
             raise ValueError('Unsupported API')
 
@@ -31,6 +32,7 @@ class AiApiClient:
         self.gpt_role_description = gpt_role_description
         if self.gpt_role_description is None:
             self.gpt_role_description = "A useful assistant that can help you with a variety of tasks."
+        self.dataclass = dataclass
         self.temperature = temperature
 
         self.init_client()
@@ -96,11 +98,15 @@ class AiApiClient:
                     {"type": "image_url", "image_url": {"url": f"data:image/jpeg;base64,{base64_image}"}}
                 )
 
-            chat_completion = self.api_client.chat.completions.create(
-                messages=workload_json,
-                model=model,
-                temperature=self.temperature
-            )
+            kwargs = {
+                "messages": workload_json,
+                "model": model,
+                "temperature": self.temperature
+            }
+            if self.dataclass:
+                kwargs["dataclass"] = self.dataclass
+
+            chat_completion = self.api_client.beta.chat.completions.parse(**kwargs)
             answer = chat_completion
 
         if self.api == 'genai':
