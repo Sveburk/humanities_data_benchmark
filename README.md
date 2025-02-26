@@ -41,12 +41,12 @@ This suite uses a `benchmarks.csv` file to store the test configurations.
 ## Datasets
 The repository contains the following datasets:
 
-| Benchmark                                                                                                                        | Description                                                | Information                                                                                                                                                                                                                                                                                                                                                             |
-|----------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- | [Metadata Extraction](benchmarks/metadata_extraction/README.md) | A benchmark for extracting metadata from images.          | ![imgs](https://img.shields.io/badge/images-65-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-letter--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Dataclass](https://img.shields.io/badge/type-dataclass-yellow) ![Language](https://img.shields.io/badge/lang-de-blue) |
+| Benchmark                                                                                                                        | Description                                               | Information                                                                                                                                                                                                                                                                                                                                                             |
+|----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+ | [Metadata Extraction](benchmarks/metadata_extraction/README.md) | A benchmark for extracting metadata from images.        | ![imgs](https://img.shields.io/badge/images-65-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-letter--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Dataclass](https://img.shields.io/badge/type-dataclass-yellow) ![Language](https://img.shields.io/badge/lang-de-blue) |
 | [Bibliographic Data](benchmarks/bibliographic_data/README.md) | A benchmark for extracting bibliographic data from images. | ![imgs](https://img.shields.io/badge/images-2-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-list--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Dataclass](https://img.shields.io/badge/type-dataclass-yellow) ![Language](https://img.shields.io/badge/lang-eng-blue)   |
-| [Test Benchmark 1](benchmarks/test_benchmark/README.md)       | Extract Named Entities from Emile Zola's "J'accuse"        | ![img](https://img.shields.io/badge/image-1-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-article--like-%23D8BFD8) ![Output](https://img.shields.io/badge/output-json-yellow) ![Language](https://img.shields.io/badge/lang-fra-blue)                                                                   |
-| [Test Benchmark 2](benchmarks/test_benchmark2/README.md)      | Extract information from the 95 Theses by Martin Luther.   | ![img](https://img.shields.io/badge/image-1-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-list--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Language](https://img.shields.io/badge/lang-lat-blue)                                                                      |
+| [Test Benchmark 1](benchmarks/test_benchmark/README.md)       | Extract Named Entities from Emile Zola's "J'accuse"       | ![img](https://img.shields.io/badge/image-1-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-article--like-%23D8BFD8) ![Output](https://img.shields.io/badge/output-json-yellow) ![Language](https://img.shields.io/badge/lang-fra-blue)                                                                   |
+| [Test Benchmark 2](benchmarks/test_benchmark2/README.md)      | Extract information from the 95 Theses by Martin Luther.  | ![img](https://img.shields.io/badge/image-1-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-list--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Language](https://img.shields.io/badge/lang-lat-blue)                                                                      |
 
 
 ## Tests and Results
@@ -112,7 +112,24 @@ GENAI_API_KEY=<your_genai_api_key>
 ANTHROPIC_API_KEY=<your_anthropic_api_key>
 ```
 
-### Run a Benchmark
+### Run a Benchmark Test
+To run the suite of tests, you can use the `run_benchmarks.py` script. This script will run all the tests in the `benchmarks_tests.csv` file.
+
+You also can use the command line interface to run a single test. For example:
+
+```bash
+python dhbm.py --name "folder_name" --provider "openai" --model "gpt-4o" \
+--role_description "A useful assistant." --prompt_file "prompt.txt" --api_key "your-api-key"
+````
+
+Alternatively, you can provide the configuration as a json file:
+
+```bash
+python dhbm.py --config test_config.json --api_key "your-api-key"
+```
+Instead of providing the api key as a command line argument, you can also set it in `.env` file.
+
+If you want to run a single test from a script, you can use the following code:
 
 ```python
 from scripts.run_benchmarks import run_single_test
@@ -145,7 +162,7 @@ B1,test_benchmark,genai,gemini-2.0-flash,Document,0.5,You are a Historian,prompt
 - `temperature`: The temperature parameter for the model. This can be any value between 0 and 1.
 - `role_description`: A description of the role that the model should take on. This can be any description that is supported by the provider.
 - `prompt_file`: The name of the prompt file in the `prompts` directory.
-- `legacy_test`: A boolean value that indicates whether the benchmark is a legacy test. This can be `True` or `False`.
+- `legacy_test`: A boolean value that indicates whether the benchmark is a legacy test. This can be `true` or `false`.
 
 This allows you to run the benchmark with different models, prompts, and configurations.
 

@@ -21,7 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 BENCHMARKS_DIR = '../benchmarks'
-CONFIG_FILE = os.path.join(BENCHMARKS_DIR, 'benchmarks.csv')
+CONFIG_FILE = os.path.join(BENCHMARKS_DIR, 'benchmarks_tests.csv')
 
 def get_api_key(provider):
     """Get the API key for the provider."""
