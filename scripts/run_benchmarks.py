@@ -98,16 +98,6 @@ def main():
                 all_results.update(results)
         create_result_table(all_results)
 
-    ### Single Test
-    # test_config = {
-    #     'name': 'folder_name',
-    #     'provider': 'openai',
-    #     'model': 'gpt-40',
-    #     '
-    #     'role_description': 'A useful assistant that can help you with a variety of tasks.',
-    #     'prompt_file': 'prompt.txt'
-    # }
-    # run_single_test(test_config)
 
 if __name__ == "__main__":
     main()
