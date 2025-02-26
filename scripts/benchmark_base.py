@@ -141,6 +141,10 @@ class Benchmark:
         image_files = sorted(os.listdir(images_dir))
         processed_images = set()
 
+        # Update ground truth
+        if self.update_required:
+            self.update_ground_truth()
+
         # Group images by request
         image_groups = {}
 
@@ -212,3 +216,13 @@ class Benchmark:
     def title(self):
         """Title of the benchmark. Used in the result table."""
         return f"{self.name} ({self.provider}/{self.model})"
+
+    @property
+    def update_required(self):
+        """ If an update of the ground truth is required before running the benchmark. """
+        return False
+
+    @staticmethod
+    def update_ground_truth():
+        """ Update the ground truth. """
+        return None
