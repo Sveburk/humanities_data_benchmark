@@ -1,0 +1,1 @@
+{"provider": "openai", "model": "gpt-4o", "test_time": 7.797456502914429, "execution_time": "2025-02-26T22:54:33.871603", "response_text": {"metadata": {"send_date": ["1926-08-13"], "letter_title": null, "sender_persons": ["sig. Groschopf", "J.A. Ritter"], "receiver_persons": ["Dr. Max Vischer"]}}, "scores": {}}

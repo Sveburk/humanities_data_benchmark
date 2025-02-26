@@ -1,0 +1,1 @@
+{"provider": "openai", "model": "gpt-4o", "test_time": 5.792100667953491, "execution_time": "2025-02-26T22:58:38.160710", "response_text": {"metadata": {"send_date": ["1932-10-15"], "letter_title": ["Darlehen f\u00fcr den Bau des neuen Personenschiffes"], "sender_persons": ["Basler Rheinschiffahrt Aktiengesellschaft"], "receiver_persons": ["Dr. Max Vischer"]}}, "scores": {}}

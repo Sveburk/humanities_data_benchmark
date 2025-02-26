@@ -1,0 +1,1 @@
+{"provider": "openai", "model": "gpt-4o", "test_time": 3.6014411449432373, "execution_time": "2025-02-26T22:57:24.101933", "response_text": {"metadata": {"send_date": ["1928-06-19"], "letter_title": null, "sender_persons": ["Dr. Adolf Bieder", "Dr. Hans Burckhardt", "Dr. Rudolf Leupold"], "receiver_persons": ["Basler Personenschiffahrtsgesellschaft"]}}, "scores": {}}

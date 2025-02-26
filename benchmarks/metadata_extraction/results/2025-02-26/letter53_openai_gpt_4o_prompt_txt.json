@@ -1,0 +1,1 @@
+{"provider": "openai", "model": "gpt-4o", "test_time": 4.177906513214111, "execution_time": "2025-02-26T22:58:28.276045", "response_text": {"metadata": {"send_date": ["1932-10-07"], "letter_title": null, "sender_persons": ["Basler Personenschiffahrtsgesellschaft"], "receiver_persons": ["Vorstandsmitglieder der Basler Personenschiffahrtsgesellschaft"]}}, "scores": {}}

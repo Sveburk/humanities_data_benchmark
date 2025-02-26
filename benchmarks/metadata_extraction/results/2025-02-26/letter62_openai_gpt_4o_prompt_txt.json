@@ -1,0 +1,1 @@
+{"provider": "openai", "model": "gpt-4o", "test_time": 6.922729253768921, "execution_time": "2025-02-26T22:59:03.899827", "response_text": {"metadata": {"send_date": ["1933-07-04"], "letter_title": null, "sender_persons": ["J. H. Fischer", "Arthur Oettinger-Heitz"], "receiver_persons": ["Basler Rheinschiffahrts A.-G."]}}, "scores": {}}

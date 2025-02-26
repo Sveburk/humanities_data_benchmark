@@ -1,0 +1,1 @@
+{"provider": "openai", "model": "gpt-4o", "test_time": 3.6275813579559326, "execution_time": "2025-02-26T22:57:20.498491", "response_text": {"metadata": {"send_date": ["1928-05-31"], "letter_title": null, "sender_persons": ["N. Haufbauer"], "receiver_persons": ["Dr. Max Vischer"]}}, "scores": {}}
