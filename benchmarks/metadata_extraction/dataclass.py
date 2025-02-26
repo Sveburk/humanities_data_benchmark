@@ -5,8 +5,8 @@ from pydantic import BaseModel
 
 @dataclass
 class Metadata:
-    send_date: Optional[str]
-    letter_title: Optional[str]
+    send_date: Optional[List[str]]
+    letter_title: Optional[List[str]]
     sender_persons: Optional[List[str]]
     receiver_persons: Optional[List[str]]
 

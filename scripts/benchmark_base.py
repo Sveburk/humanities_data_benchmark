@@ -263,14 +263,12 @@ class Benchmark:
 
     @property
     def update_required(self) -> bool:
-
         """ If an update of the ground truth is required before running the benchmark. """
 
         return False
 
     @staticmethod
     def update_ground_truth() -> None:
-
         """ Update the ground truth. """
 
         return None
