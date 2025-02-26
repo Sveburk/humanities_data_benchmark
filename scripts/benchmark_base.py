@@ -43,7 +43,7 @@ class Benchmark:
         prompt_path = os.path.join(self.benchmark_dir, "prompts", self.prompt_file)
         with open(prompt_path, 'r') as f:
             return f.read()
-
+            # todo: auskommentiert da es nicht funktioniert hat
             """raw_prompt = f.read()
             prompt = raw_prompt.format(page_number=111)
             return prompt"""
