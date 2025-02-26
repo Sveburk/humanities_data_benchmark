@@ -1,0 +1,5 @@
+id,name,provider,model,dataclass,temperature,role_description,prompt_file,legacy_test
+T1,test_benchmark,genai,gemini-2.0-flash,,0.5,You are a Historian,prompt.txt,true
+T2,test_benchmark2,genai,gemini-2.0-flash,,0.5,You are a Historian,prompt2.txt,true
+T3,bibliographic_data,openai,gpt-4o,Document,0.0,You are a Historian,prompt.txt,true
+T4,metadata_extraction,openai,gpt-4o,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false

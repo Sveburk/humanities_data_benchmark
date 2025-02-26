@@ -21,7 +21,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 BENCHMARKS_DIR = '../benchmarks'
-CONFIG_FILE = os.path.join(BENCHMARKS_DIR, 'benchmarks.csv')
+CONFIG_FILE = os.path.join(BENCHMARKS_DIR, 'benchmarks_tests.csv')
 
 def get_api_key(provider):
     """Get the API key for the provider."""
@@ -98,16 +98,6 @@ def main():
                 all_results.update(results)
         create_result_table(all_results)
 
-    ### Single Test
-    # test_config = {
-    #     'name': 'folder_name',
-    #     'provider': 'openai',
-    #     'model': 'gpt-40',
-    #     '
-    #     'role_description': 'A useful assistant that can help you with a variety of tasks.',
-    #     'prompt_file': 'prompt.txt'
-    # }
-    # run_single_test(test_config)
 
 if __name__ == "__main__":
     main()
