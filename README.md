@@ -4,18 +4,55 @@ evaluating the performance of large language models (LLMs) on tasks in the human
 intended to be a resource for researchers and practitioners who are interested in evaluating the performance
 of LLMs on DH-related tasks.
 
+## Table of Contents
+- [Terminology](#terminology)
+- [Datasets](#datasets)
+- [Tests and Results](#tests-and-results)
+- [Further Information](#further-information)
+  - [Create a new benchmark](#create-a-new-benchmark)
+  - [API Keys](#api-keys)
+  - [Run a Benchmark](#run-a-benchmark)
+  - [Add Configuration to the Suite](#add-configuration-to-the-suite)
+  - [Implement a Benchmark Class](#implement-a-benchmark-class)
+
+## Terminology
+- **Benchmark**: A benchmark is a task that the model should perform. Its resources consist of images and their ground truths, prompts, 
+dataclasses and a scoring function. A benchmark can be used as the basis for a **test**. Each benchmark is stored in a separate directory.
+- **Prompt**: A prompt is a text that is given to the model to guide its response. All prompts are stored in the `prompts` directory of the benchmark.
+- **Ground Truth**: The ground truth is the correct answer to the task. It is used to evaluate the model's response. For each image, there is a ground 
+truth file with the same base name.
+- **Image**: An image is a visual representation of the task. The model should use the image to generate its response. Images are stored in the `images` 
+directory of the benchmark.
+- **Provider**: The provider is the company that provides the model. The provider can be `openai`, `genai`, or `anthropic`.
+- **Model**: The model is the specific model that is used to perform the task. The model can be any model that is supported by the 
+provider.
+- **Scoring Function**: The scoring function is a function that is used to evaluate the model's response. 
+It must be provided by overriding the `score_answer` method in the benchmark class.
+- **Dataclass**: The use of dataclasses (or some other abstract representation of the expected output) differs from provider to provider. 
+Currently, only OpenAI's dataclass feature is supported.
+- **Test**: A test is a specific instance of a benchmark. A test is run with a configuration which indicates the provider, model, 
+temperature, role description, prompt file and dataclass.
+- **Test Configuration**: A test configuration is a set of parameters that are used to run a test. 
+This suite uses a `benchmarks.csv` file to store the test configurations.  
+- **Response**: The response is the model's answer to the task. It is a json object that contains metadata and the model's output.
+- **Score**: The score is the result of the evaluation. It indicates how well the model performed on the task.
+
+
 ## Datasets
 The repository contains the following datasets:
-- [**Test Benchmark 1**](benchmarks/test_benchmark/README.md): A simple workflow without any additional configuration.
-- [**Test Benchmark 2**](benchmarks/test_benchmark2/README.md): A simple workflow with configured Benchmark class.
-- [**Bibliographic Data**](benchmarks/bibliographic_data/README.md): A benchmark for extracting bibliographic data from images.
+
+| Benchmark                                                                                                                        | Description                                                | Information                                                                                                                                                                                                                                                                                                                                                           |
+|----------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Bibliographic Data](benchmarks/bibliographic_data/README.md) | A benchmark for extracting bibliographic data from images. | ![imgs](https://img.shields.io/badge/images-2-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-list--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Dataclass](https://img.shields.io/badge/type-dataclass-yellow) ![Language](https://img.shields.io/badge/lang-eng-blue) |
+| [Test Benchmark 1](benchmarks/test_benchmark/README.md)       | Extract Named Entities from Emile Zola's "J'accuse"        | ![img](https://img.shields.io/badge/image-1-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-article--like-%23D8BFD8) ![Output](https://img.shields.io/badge/output-json-yellow) ![Language](https://img.shields.io/badge/lang-fra-blue)                                                                 |
+| [Test Benchmark 2](benchmarks/test_benchmark2/README.md)      | Extract information from the 95 Theses by Martin Luther.   | ![img](https://img.shields.io/badge/image-1-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-list--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Language](https://img.shields.io/badge/lang-lat-blue)                                                                                                                              |
 
 
-## Evaluation
+## Tests and Results
+TODO
 
 
-## Use the Benchmark Suite
-To use the benchmark suite, you can clone the repository and add benchmarks to the benchmark folder like so:
+## Further Information
 
 ### Create a new benchmark
 To create a new benchmark, follow these steps:
@@ -74,17 +111,37 @@ GENAI_API_KEY=<your_genai_api_key>
 ANTHROPIC_API_KEY=<your_anthropic_api_key>
 ```
 
-### Add Configuration
+### Run a Benchmark
+
+```python
+from scripts.run_benchmarks import run_single_test
+
+test_config = {
+    'name': 'folder_name',
+    'provider': 'openai',
+    'model': 'gpt-40',
+    'dataclass': 'Document',
+    'temperature': 0.5,
+    'role_description': 'A useful assistant that can help you with a variety of tasks.',
+    'prompt_file': 'prompt.txt'
+}
+run_single_test(test_config)
+```
+
+### Add Configuration to the Suite
 To add a configuration, you need to add a new row to the `benchmarks.csv` file. The file has the following structure:
 
 ```csv
-name,provider,model,role_description,prompt_file,legacy_test
-test_benchmark,openai,gpt-40,You are a professsor,prompt1.txt,False
+id,name,provider,model,dataclass,temperature,role_description,prompt_file,legacy_test
+B1,test_benchmark,genai,gemini-2.0-flash,Document,0.5,You are a Historian,prompt.txt,false
 ```
 
+- `id`: A unique identifier for the benchmark. This can be any string.
 - `name`: The name of the benchmark. This must match the name of the directory in the `benchmarks` folder.
 - `provider`: The provider of the model. This can be `openai`, `genai`, or `anthropic`.
 - `model`: The name of the model. This can be any model name that is supported by the provider.
+- `dataclass`: The dataclass or schema used to structure the response of the request.
+- `temperature`: The temperature parameter for the model. This can be any value between 0 and 1.
 - `role_description`: A description of the role that the model should take on. This can be any description that is supported by the provider.
 - `prompt_file`: The name of the prompt file in the `prompts` directory.
 - `legacy_test`: A boolean value that indicates whether the benchmark is a legacy test. This can be `True` or `False`.
