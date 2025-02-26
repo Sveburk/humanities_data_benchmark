@@ -9,6 +9,7 @@ from PIL import Image
 
 from simple_ai_clients import AiApiClient
 
+
 class Benchmark:
     """ Base class for all benchmark workflows. """
 
@@ -32,13 +33,15 @@ class Benchmark:
                                   gpt_role_description=self.role_description)
 
     def load_prompt(self) -> str:
-        """ Load the prompt from the benchmark directory. """
+        """ Load the prompt from the benchmark directory."""
+
         prompt_path = os.path.join(self.benchmark_dir, "prompts", self.prompt_file)
         with open(prompt_path, 'r') as f:
             return f.read()
 
     def load_dataclass(self) -> None | type:
         """ Dynamically load a dataclass from dataclass.py """
+
         class_name = self.dataclass_name
         if class_name is None or class_name == "default" or class_name == "":
             return None
@@ -51,7 +54,11 @@ class Benchmark:
 
     def load_ground_truth(self,
                           image_name: str) -> dict:
-        """ Load the ground truth from the benchmark directory. """
+        """ Load the ground truth from the benchmark directory.
+
+        :param image_name: the name of the image file
+        """
+
         ground_truth_path = os.path.join(self.benchmark_dir, "ground_truths", f"{image_name}.json")
         try:
             with open(ground_truth_path, 'r') as f:
@@ -65,7 +72,13 @@ class Benchmark:
     def resize_image(image_path: str,
                      temp_dir: str,
                      max_size: tuple = (1024, 1024)) -> str:
-        """ Resize an image to fit within the max size. """
+        """ Resize an image to fit within the max size.
+
+        :param image_path: the path to the image file
+        :param temp_dir: the temporary directory to save the resized image
+        :param max_size: the maximum size of the image, defaults to (1024, 1024)
+        """
+
         img = Image.open(image_path)
         img.thumbnail(max_size)
 
@@ -77,7 +90,11 @@ class Benchmark:
 
     def ask_llm(self,
                 image_paths: list[str]) -> dict:
-        """ Ask the language model a question. """
+        """ Ask the language model a question.
+
+        :param image_paths: a list of image paths
+        """
+
         self.client.clear_image_resources()
 
         if self.resize_images:
@@ -100,7 +117,12 @@ class Benchmark:
     def save_answer(self,
                     image_name: str,
                     answer: dict) -> None:
-        """ Save the answer to a file. """
+        """ Save the answer to a file.
+
+        :param image_name: the name of the image file
+        :param answer: the answer from the language model
+        """
+
         date_str = datetime.now().strftime('%Y-%m-%d')
         save_path = os.path.join(self.benchmark_dir, 'results', date_str)
         os.makedirs(save_path, exist_ok=True)
@@ -112,7 +134,10 @@ class Benchmark:
 
     def prepare_scoring_data(self,
                              answer: dict) -> dict:
-        """ Prepare the data for scoring. """
+        """ Prepare the data for scoring.
+        :param answer: the answer from the language model
+        """
+
         if "response_text" in answer:
             response_text = answer["response_text"]
             json_text = None
@@ -136,11 +161,25 @@ class Benchmark:
                               result: dict,
                               score: dict,
                               truth) -> str:
+        """ Create a markdown render of the request.
+
+        :param image_name: the name of the image file
+        :param result: the result from the language model
+        :param score: the score of the result
+        :param truth: the ground truth
+        """
+
         return ""
 
     def save_render(self,
                     image_name: str,
                     render: str) -> None:
+        """ Save the render to a file.
+
+        :param image_name: the name of the image file
+        :param render: the render to save
+        """
+
         self.request_render = render
         filename = f"{self.get_request_name(image_name)}.md"
         save_path = os.path.join(self.benchmark_dir, 'renders')
@@ -150,6 +189,7 @@ class Benchmark:
 
     def run(self) -> dict:
         """Run the benchmark."""
+
         images_dir = os.path.join(self.benchmark_dir, 'images')
         image_files = sorted(os.listdir(images_dir))
         processed_images = set()
@@ -195,10 +235,16 @@ class Benchmark:
 
     @staticmethod
     def get_image_base_name(image_name: str):
+        """ Get the base name of an image file. """
+
         return os.path.splitext(image_name)[0]
 
     def get_request_name(self,
                          image_name: str):
+        """ Get the name of the request.
+
+        :param image_name: the name of the image file"""
+
         name = self.get_image_base_name(image_name) + f"_{self.provider}_{self.model}_{self.prompt_file}"
         name = name.replace(" ", "_").replace("-", "_").replace(".", "_")
         return name
@@ -207,39 +253,53 @@ class Benchmark:
                      image_name: str,
                      response: dict,
                      ground_truth: dict) -> dict:
+        """ Score the answer.
+
+        :param image_name: the name of the image file
+        :param response: the response from the language model
+        :param ground_truth: the ground truth
+        """
+
         return {"total": 0}
 
     @property
     def convert_result_to_json(self) -> bool:
         """If the result is a JSON string, convert it to a JSON object."""
+
         return True
 
     @property
     def resize_images(self) -> bool:
         """If images are too large, resize them before sending to the model."""
+
         return True
 
     @property
     def get_page_part_regex(self) -> str:
         """If multiple images are part of a single request, this regex will match the base name."""
+
         return r'(.+)_p\d+\.(jpg|jpeg|png)$'
 
     @property
     def get_output_format(self) -> str:
         """Files saved in <benchmark>/results/ will be saved in this format."""
+
         return "json"
 
     @property
     def title(self) -> str:
         """Title of the benchmark. Used in the result table."""
+
         return f"{self.name} ({self.provider}/{self.model})"
 
     @property
     def update_required(self) -> bool:
         """ If an update of the ground truth is required before running the benchmark. """
+
         return False
 
     @staticmethod
     def update_ground_truth() -> None:
         """ Update the ground truth. """
+
         return None
