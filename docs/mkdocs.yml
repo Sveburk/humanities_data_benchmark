@@ -1,0 +1,26 @@
+site_name: Humanities Data Benchmark
+theme:
+  name: material
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.expand
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+
+nav:
+  - Home: index.md
+  - Overview: overview.md
+  - Best Results: best_results.md
+  - Tests:
+      - Example Test 1: tests/test1.md
+      - Example Test 2: tests/test2.md
+  - About: about.md
+
+markdown_extensions:
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
