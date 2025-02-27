@@ -1,5 +1,5 @@
 site_name: Humanities Data Benchmark
-docs_dir: .
+
 theme:
   name: material
   features:
