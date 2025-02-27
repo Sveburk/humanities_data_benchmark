@@ -1,27 +1,29 @@
-site_name: Humanities Data Benchmark
+name: Deploy MkDocs Documentation
 
-theme:
-  name: material
-  features:
-    - navigation.instant
-    - navigation.tracking
-    - navigation.expand
-    - toc.integrate
-    - search.suggest
-    - search.highlight
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
-nav:
-  - Home: index.md
-  - Overview: overview.md
-  - Best Results: best_results.md
-  - Tests:
-      - Example Test 1: tests/test1.md
-      - Example Test 2: tests/test2.md
-  - About: about.md
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-markdown_extensions:
-  - toc:
-      permalink: true
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install MkDocs
+        run: pip install mkdocs-material
+
+      - name: Generate Navigation
+        run: python generate_reports.py
+
+      - name: Deploy MkDocs
+        run: mkdocs gh-deploy --force
