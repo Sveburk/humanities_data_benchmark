@@ -16,6 +16,7 @@ class Benchmark:
     def __init__(self, config, api_key, benchmark_directory):
         """ Initialize the benchmark. """
 
+        self.id = config.get('id', None)
         self.name = config['name']
         self.benchmark_dir = benchmark_directory
         self.provider = config['provider']
@@ -42,11 +43,14 @@ class Benchmark:
         """ Load the prompt from the benchmark directory. """
         prompt_path = os.path.join(self.benchmark_dir, "prompts", self.prompt_file)
         with open(prompt_path, 'r') as f:
-            return f.read()
-            # todo: auskommentiert da es nicht funktioniert hat
-            """raw_prompt = f.read()
-            prompt = raw_prompt.format(page_number=111)
-            return prompt"""
+            prompt = f.read()
+            if False:
+                try:
+                    kwargs = {}
+                    prompt = prompt.format(**kwargs)
+                except KeyError as e:
+                    return prompt
+            return prompt
 
     def load_dataclass(self) -> None | type:
         """ Dynamically load a dataclass from dataclass.py """
@@ -221,8 +225,11 @@ class Benchmark:
 
     def get_request_name(self,
                          image_name: str) -> str:
-        name = self.get_image_base_name(image_name) + f"_{self.provider}_{self.model}_{self.prompt_file}"
-        name = name.replace(" ", "_").replace("-", "_").replace(".", "_")
+        if self.id is not None:
+            return f"request_{self.id}"
+        else:
+            name = self.get_image_base_name(image_name) + f"_{self.provider}_{self.model}_{self.prompt_file}"
+            name = name.replace(" ", "_").replace("-", "_").replace(".", "_")
         return name
 
     def score_answer(self,
@@ -263,12 +270,14 @@ class Benchmark:
 
     @property
     def update_required(self) -> bool:
+
         """ If an update of the ground truth is required before running the benchmark. """
 
         return False
 
     @staticmethod
     def update_ground_truth() -> None:
+
         """ Update the ground truth. """
 
         return None
