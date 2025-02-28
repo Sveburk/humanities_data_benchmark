@@ -34,6 +34,8 @@ Currently, only OpenAI's dataclass feature is supported.
 temperature, role description, prompt file and dataclass.
 - **Test Configuration**: A test configuration is a set of parameters that are used to run a test. 
 This suite uses a `benchmarks.csv` file to store the test configurations.  
+- **Request**: A benchmark test will trigger requests to the provider's API. The request consists of one or multiple images 
+and a prompt. The model will generate a response based on the request. At least one, but usually multiple requests are made for each test.
 - **Response**: The response is the model's answer to the task. It is a json object that contains metadata and the model's output.
 - **Score**: The score is the result of the evaluation. It indicates how well the model performed on the task.
 

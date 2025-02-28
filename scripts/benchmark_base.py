@@ -1,22 +1,25 @@
 """ This module contains the base class for all benchmark workflows. """
 import importlib
 import json
+import logging
 import os
 import re
 import tempfile
+from abc import ABC, abstractmethod
 from datetime import datetime
-from PIL import Image
 
-from scoring_helper import remove_none
-from simple_ai_clients import AiApiClient
+from scripts.data_loader import read_file, resize_image, write_file
+from scripts.scoring_helper import remove_none
+from scripts.simple_ai_clients import AiApiClient
 
-class Benchmark:
+
+class Benchmark(ABC):
     """ Base class for all benchmark workflows. """
 
     def __init__(self, config, api_key, benchmark_directory):
         """ Initialize the benchmark. """
 
-        self.id = config.get('id', None)
+        self.id = config.get('id')
         self.name = config['name']
         self.benchmark_dir = benchmark_directory
         self.provider = config['provider']
@@ -38,19 +41,42 @@ class Benchmark:
             kwargs["dataclass"] = self.dataclass
 
         self.client = AiApiClient(**kwargs)
+        logging.debug(f"Initialized benchmark {config['name']}")
+
+    def is_runnable(self) -> bool:
+        """ Check if the benchmark is runnable. """
+        if not self.prompt:
+            logging.error(f"Prompt not found for {self.name}")
+            return False
+        if not os.path.exists(self.benchmark_dir):
+            logging.error(f"Benchmark directory not found: {self.benchmark_dir}")
+            return False
+        if not os.path.exists(os.path.join(self.benchmark_dir, "images")):
+            logging.error(f"Images directory not found: {self.benchmark_dir}")
+            return False
+        if not os.path.exists(os.path.join(self.benchmark_dir, "ground_truths")):
+            logging.error(f"Ground truths directory not found: {self.benchmark_dir}")
+            return False
+        if not self.provider in ["openai", "genai", "anthropic"]:
+            logging.error(f"Invalid provider: {self.provider}")
+            return False
+        if not self.model:
+            logging.error(f"Model not found for {self.name}")
+            return False
+        return True
 
     def load_prompt(self) -> str:
         """ Load the prompt from the benchmark directory. """
         prompt_path = os.path.join(self.benchmark_dir, "prompts", self.prompt_file)
-        with open(prompt_path, 'r') as f:
-            prompt = f.read()
-            if False:
-                try:
-                    kwargs = {}
-                    prompt = prompt.format(**kwargs)
-                except KeyError as e:
-                    return prompt
-            return prompt
+        prompt = read_file(prompt_path)
+        logging.debug(f"Loaded prompt from {prompt_path}")
+        if self.has_file_information:
+            try:
+                kwargs = {} # Add file information here
+                return prompt.format(**kwargs)
+            except KeyError as e:
+                return prompt
+        return prompt
 
     def load_dataclass(self) -> None | type:
         """ Dynamically load a dataclass from dataclass.py """
@@ -60,6 +86,7 @@ class Benchmark:
 
         try:
             dataclass_module = importlib.import_module(f"benchmarks.{self.name}.dataclass")
+            logging.debug(f"Loaded dataclass {class_name}")
             return getattr(dataclass_module, class_name)
         except (ImportError, AttributeError) as e:
             raise ImportError(f"Could not load dataclass {class_name}: {e}")
@@ -68,30 +95,15 @@ class Benchmark:
                           image_name: str) -> dict:
         """ Load the ground truth from the benchmark directory. """
         ground_truth_path = os.path.join(self.benchmark_dir, "ground_truths", f"{image_name}.json")
-        try:
-            with open(ground_truth_path, 'r') as f:
-                content = f.read().strip()
-                if not content:
-                    return {"error": "Ground truth file is empty."}
-                return json.loads(content)
-        except FileNotFoundError:
-            return {"error": f"Ground truth not found: {image_name}"}
-        except json.JSONDecodeError as e:
-            return {"error": "Invalid JSON format."}
+        ground_truth_text = read_file(ground_truth_path)
 
-    @staticmethod
-    def resize_image(image_path: str,
-                     temp_dir: str,
-                     max_size: tuple = (1024, 1024)) -> str:
-        """ Resize an image to fit within the max size. """
-        img = Image.open(image_path)
-        img.thumbnail(max_size)
+        if self.convert_truth_to_json:
+            try:
+                return json.loads(ground_truth_text)
+            except json.JSONDecodeError as e:
+                return {"error": "Invalid JSON format."}
+        return {"response_text": ground_truth_text}
 
-        filename = os.path.basename(image_path)
-        resized_path = os.path.join(temp_dir, filename)
-
-        img.save(resized_path, optimize=True, quality=85)
-        return resized_path
 
     def ask_llm(self,
                 image_paths: list[str]) -> dict:
@@ -101,7 +113,7 @@ class Benchmark:
         if self.resize_images:
             with tempfile.TemporaryDirectory() as temp_dir:
                 resized_images = [
-                    self.resize_image(image_path, temp_dir)
+                    resize_image(image_path, temp_dir)
                     for image_path in image_paths
                 ]
 
@@ -115,18 +127,34 @@ class Benchmark:
 
             return self.client.prompt(model=self.model, prompt=self.prompt)
 
-    def save_answer(self,
-                    image_name: str,
-                    answer: dict) -> None:
-        """ Save the answer to a file. """
+    def get_request_answer_path(self):
         date_str = datetime.now().strftime('%Y-%m-%d')
-        save_path = os.path.join(self.benchmark_dir, 'results', date_str)
+        return str(os.path.join(self.benchmark_dir, 'results', date_str, self.id))
+
+    def get_request_answer_file_name(self, image_name):
+        """ Get the path to the answer file. """
+        return os.path.join(self.get_request_answer_path(), f'{image_name}.json')
+
+    def get_request_render_path(self):
+        date_str = datetime.now().strftime('%Y-%m-%d')
+        return str(os.path.join(self.benchmark_dir, 'renders', date_str, self.id))
+
+    def get_request_render_file_name(self, image_name):
+        """ Get the path to the render file. """
+        return os.path.join(self.get_request_render_path(), f'{image_name}.md')
+
+    def save_request_answer(self,
+                            image_name: str,
+                            answer: dict) -> None:
+        """ Save the answer to a file. """
+
+        save_path = self.get_request_answer_path()
         os.makedirs(save_path, exist_ok=True)
 
-        file_name = f"{self.get_request_name(image_name)}.{self.get_output_format}"
-
-        with open(os.path.join(save_path, file_name), 'w', encoding='utf-8') as f:
-            json.dump(answer, f)
+        file_name = os.path.join(save_path,
+                                 f"{self.get_request_name(image_name)}.json")
+        write_file(file_name, answer)
+        logging.info(f"Saved answer to {file_name}")
 
     def prepare_scoring_data(self,
                              answer: dict) -> dict:
@@ -135,7 +163,7 @@ class Benchmark:
             response_text = answer["response_text"]
             json_text = None
             if self.convert_result_to_json and "```json" in response_text:
-                json_match = re.search(r'```json\s*(\{.*?\})\s*```', response_text, re.DOTALL)
+                json_match = re.search(r'```json\s*(\{.*?})\s*```', response_text, re.DOTALL)
                 if json_match:
                     json_text = json_match.group(1)
 
@@ -155,32 +183,31 @@ class Benchmark:
 
         return {"error": "No response text found."}
 
+    @abstractmethod
     def create_request_render(self,
                               image_name: str,
                               result: dict,
                               score: dict,
                               truth) -> str:
-        return ""
+        """ Create a markdown render of the request. """
+        pass
 
     def save_render(self,
                     image_name: str,
                     render: str) -> None:
-        self.request_render = render
-        date_str = datetime.now().strftime('%Y-%m-%d')
-        filename = f"{self.get_request_name(image_name)}.md"
-        save_path = os.path.join(self.benchmark_dir, date_str, 'renders')
-        os.makedirs(save_path, exist_ok=True)
-        with open(os.path.join(save_path, filename), 'w', encoding='utf-8') as f:
-            f.write(render)
 
-    def run(self) -> dict:
+        save_path = self.get_request_render_path()
+        os.makedirs(save_path, exist_ok=True)
+        write_file(self.get_request_render_file_name(image_name), render)
+
+    def run(self,
+            regenerate_existing_results=True) -> dict:
         """Run the benchmark."""
         images_dir = os.path.join(self.benchmark_dir, 'images')
         image_files = sorted(os.listdir(images_dir))
         processed_images = set()
 
         # Update ground truth
-
         if self.update_required:
             self.update_ground_truth()
 
@@ -191,7 +218,7 @@ class Benchmark:
             if image_file in processed_images:
                 continue
 
-            match = re.match(self.get_page_part_regex, image_file, re.IGNORECASE)
+            match = re.match(self.get_page_part_regex(), image_file, re.IGNORECASE)
             if match:
                 base_name = match.group(1)
                 grouped_images = sorted([
@@ -206,78 +233,90 @@ class Benchmark:
 
         # Process each image group
         all_results = {}
-        for request_id, img_files in image_groups.items():
+        for image_name, img_files in image_groups.items():
             image_paths = [os.path.join(images_dir, img) for img in img_files]
 
-            answer = self.ask_llm(image_paths)
-            self.save_answer(request_id, answer)
-            ground_truth = self.load_ground_truth(request_id)
-            score = self.score_answer(request_id, answer, ground_truth)
-            all_results[self.get_request_name(request_id)] = score
-            render = self.create_request_render(request_id, answer, score, ground_truth)
-            self.save_render(request_id, render)
+            if (regenerate_existing_results and os.path.exists(self.get_request_answer_file_name(image_name))) or \
+                (not os.path.exists(self.get_request_answer_file_name(image_name))):
+                logging.info(f"Processing {self.id}, {image_name}...")
+                answer = self.ask_llm(image_paths)
+                self.save_request_answer(image_name, answer)
+            else:
+                logging.info(f"Skipping {image_name} as the answer already exists.")
+                answer_text = read_file(self.get_request_answer_file_name(image_name))
+                answer = json.loads(answer_text)
+
+            ground_truth = self.load_ground_truth(image_name)
+            score = self.score_request_answer(image_name, answer, ground_truth)
+            all_results[self.get_request_name(image_name)] = score
+            render = self.create_request_render(image_name, answer, score, ground_truth)
+            self.save_render(image_name, render)
 
         return all_results
 
-    @staticmethod
-    def get_image_base_name(image_name: str) -> str:
-        return os.path.splitext(image_name)[0]
+    def get_request_name(self, image_name: str) -> str:
+        """ Get the name of the request. """
+        return f"request_{self.id}_{os.path.splitext(image_name)[0]}"
 
-    def get_request_name(self,
-                         image_name: str) -> str:
-        if self.id is not None:
-            return f"request_{self.id}"
-        else:
-            name = self.get_image_base_name(image_name) + f"_{self.provider}_{self.model}_{self.prompt_file}"
-            name = name.replace(" ", "_").replace("-", "_").replace(".", "_")
-        return name
-
-    def score_answer(self,
+    @abstractmethod
+    def score_request_answer(self,
                      image_name: str,
                      response: dict,
                      ground_truth: dict) -> dict:
-        return {"total": 0}
+        """ Score the response. """
+        pass
 
-    @property
     def remove_none_values(self) -> bool:
         """If True, remove None values from the response before scoring."""
         return True
 
-    @property
     def convert_result_to_json(self) -> bool:
         """If the result is a JSON string, convert it to a JSON object."""
         return True
 
-    @property
+    def convert_truth_to_json(self) -> bool:
+        """If the result is a JSON string, convert it to a JSON object."""
+        return True
+
     def resize_images(self) -> bool:
         """If images are too large, resize them before sending to the model."""
         return False
 
-    @property
     def get_page_part_regex(self) -> str:
         """If multiple images are part of a single request, this regex will match the base name."""
         return r'(.+)_p\d+\.(jpg|jpeg|png)$'
 
-    @property
-    def get_output_format(self) -> str:
-        """Files saved in <benchmark>/results/ will be saved in this format."""
-        return "json"
-
-    @property
-    def title(self) -> str:
+    def get_title(self) -> str:
         """Title of the benchmark. Used in the result table."""
         return f"{self.name} ({self.provider}/{self.model})"
 
-    @property
-    def update_required(self) -> bool:
-
-        """ If an update of the ground truth is required before running the benchmark. """
-
+    def has_file_information(self) -> bool:
+        """If the prompt file contains file information."""
         return False
 
-    @staticmethod
-    def update_ground_truth() -> None:
+    def update_required(self) -> bool:
+        """ If an update of the ground truth is required before running the benchmark. """
+        return False
 
+    def update_ground_truth(self) -> None:
         """ Update the ground truth. """
-
         return None
+
+
+class DefaultBenchmark(Benchmark):
+    """ Default benchmark class. """
+
+    def score_request_answer(self,
+                     image_name: str,
+                     response: dict,
+                     ground_truth: dict) -> dict:
+        """ Score the response. """
+        return {}
+
+    def create_request_render(self,
+                                image_name: str,
+                                result: dict,
+                                score: dict,
+                                truth) -> str:
+            """ Create a markdown render of the request. """
+            return ""

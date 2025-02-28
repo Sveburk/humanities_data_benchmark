@@ -8,3 +8,7 @@ extract NER entities from the text. The evaluation is based on the number of cor
 - The task is to extract named entities from the text.
 - The model should extract the entities and save them in a given JSON structure.
 - The evaluation is based on the number of correctly extracted entities.
+
+
+## Test Results
+

@@ -2,23 +2,16 @@ import csv
 import importlib
 import os
 import sys
-import logging
-from benchmark_base import Benchmark
+from benchmark_base import Benchmark, DefaultBenchmark
 from dotenv import load_dotenv
+
+from scripts import logger
 
 # Add project root to sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 load_dotenv()
 
-log_level = os.getenv('LOG_LEVEL', 'INFO').upper()
-
-logging.basicConfig(
-    level=log_level,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S'
-)
-
-logger = logging.getLogger(__name__)
+REGENERATE_RESULTS = False
 
 BENCHMARKS_DIR = '../benchmarks'
 CONFIG_FILE = os.path.join(BENCHMARKS_DIR, 'benchmarks_tests.csv')
@@ -49,7 +42,7 @@ def load_benchmark(test_config):
         return benchmark_class(test_config, api_key, benchmark_path)
     else:
         logger.info(f"Loaded {benchmark_name} from Benchmark class")
-        return Benchmark(test_config, api_key, benchmark_path)
+        return DefaultBenchmark(test_config, api_key, benchmark_path)
 
 
 def create_result_table(results):
@@ -80,23 +73,18 @@ def create_result_table(results):
         f.write(md_table)
 
 
-def run_single_test(test_config):
-    """Run a single test."""
-    benchmark = load_benchmark(test_config)
-    logger.info(f"Running {benchmark.title}...")
-    return benchmark.run()
-
-
 def main():
     # Open Config File and run each test in it
     with open(CONFIG_FILE, newline='', encoding='utf-8') as csvfile:
         tests = csv.DictReader(csvfile)
-        all_results = {}
-        for test in tests:
-            if test.get('legacy_test', 'false').lower() == 'false':
-                results = run_single_test(test)
-                all_results.update(results)
-        create_result_table(all_results)
+        for test_config in tests:
+            if test_config.get('legacy_test', 'false').lower() == 'false':
+                benchmark = load_benchmark(test_config)
+                if benchmark.is_runnable():
+                    logger.info(f"Running {benchmark.get_title()}...")
+                    results = benchmark.run(regenerate_existing_results=REGENERATE_RESULTS)
+                else:
+                    logger.error(f"Skipping {benchmark.get_title()} (not runnable).")
 
 
 if __name__ == "__main__":

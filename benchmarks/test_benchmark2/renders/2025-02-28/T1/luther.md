@@ -1,0 +1,29 @@
+
+## Result for image: luther
+
+### Prompt:
+You are provided with a historical document. Carefully analyze the document and extract the following information, formatted as a JSON object:
+
+Example of expected result:
+
+{
+"persons_mentioned": ["Person 1", "Person 2", "Person 3"],
+"places_mentioned": ["Place 1", "Place 2"],
+"general_topic": "Concise summary of the document's main topic or issue.",
+"important_dates": ["Date 1", "Date 2"]
+}
+
+Ensure accuracy and completeness in your extraction.
+
+### Response:
+```json
+{
+"persons_mentioned": ["Martino Lutther", "Jesus", "Petrus", "Papa"],
+"places_mentioned": ["Wittenberge", "Bafilica", "Petri"],
+"general_topic": "A discussion and disputation on the power of indulgences, mainly those provided by the Pope, including their spiritual effects, implications for salvation, and the proper ways for the Church to administer and interpret them. Critique is offered of the practices associated with their sale.",
+"important_dates": ["1517"]
+}
+```
+
+### Ground Truth:
+{'persons_mentioned': ['Martin Luther', 'Pope Leo X', 'Johann Tetzel'], 'places_mentioned': ['Wittenberg', 'Rome'], 'general_topic': "Critique of the Catholic Church's sale of indulgences and calls for theological reform.", 'important_dates': ['October 31, 1517']}

@@ -1,3 +1,4 @@
+
 site_name: Humanities Data Benchmark
 
 theme:
@@ -13,11 +14,23 @@ theme:
 nav:
   - Home: index.md
   - Overview: overview.md
-  - Best Results: best_results.md
+  - Benchmarks:
+    - bibliographic_data: benchmarks/bibliographic_data.md
+    - metadata_extraction: benchmarks/metadata_extraction.md
+    - test_benchmark: benchmarks/test_benchmark.md
+    - test_benchmark2: benchmarks/test_benchmark2.md
   - Tests:
-      - Example Test 1: tests/test1.md
-      - Example Test 2: tests/test2.md
-  - About: about.md
+    - 2025-02-24:
+        - T1: tests/2025-02-24/T1.md
+        - T2: tests/2025-02-24/T2.md
+        - T3: tests/2025-02-24/T3.md
+    - 2025-02-25:
+        - T4: tests/2025-02-25/T4.md
+    - 2025-02-28:
+        - T1: tests/2025-02-28/T1.md
+        - T2: tests/2025-02-28/T2.md
+        - T3: tests/2025-02-28/T3.md
+        - T4: tests/2025-02-28/T4.md
 
 markdown_extensions:
   - toc:

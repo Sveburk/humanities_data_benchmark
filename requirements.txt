@@ -7,3 +7,4 @@ python-dotenv~=1.0.1
 pillow~=11.1.0
 pydantic~=2.10.6
 RapidFuzz~=3.12.1
+pandas~=2.2.3

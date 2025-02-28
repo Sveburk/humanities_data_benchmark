@@ -1,59 +1,7 @@
-key | receiver_persons_fn | receiver_persons_fp | receiver_persons_tp | send_date_fn | send_date_fp | send_date_tp | sender_persons_fn | sender_persons_fp | sender_persons_tp
---- | --- | --- | --- | --- | --- | --- | --- | --- | ---
-letter01_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 2 | 1 | 0
-letter02_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 0
-letter03_openai_gpt_4o_prompt_txt | 1 | 1 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter04_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 0
-letter05_openai_gpt_4o_prompt_txt | 1 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0
-letter06_openai_gpt_4o_prompt_txt | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0
-letter07_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 2 | 1 | 0
-letter08_openai_gpt_4o_prompt_txt | 0 | 2 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter09_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 1 | 1 | 0 | 0 | 0 | 1
-letter10_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter11_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 1 | 1 | 0 | 0 | 1 | 0
-letter12_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 1
-letter13_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 2 | 1 | 0
-letter14_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter15_openai_gpt_4o_prompt_txt | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter16_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter17_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter18_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0
-letter19_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter20_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter21_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter22_openai_gpt_4o_prompt_txt | 0 | 2 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter23_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter24_openai_gpt_4o_prompt_txt | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter25_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter26_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter27_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 2 | 1 | 0
-letter28_openai_gpt_4o_prompt_txt | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter29_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 2 | 1 | 0
-letter31_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 2 | 1 | 0
-letter32_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 2
-letter33_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0
-letter34_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter36_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0
-letter38_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0
-letter39_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 0
-letter40_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 0
-letter42_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 0
-letter43_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 2 | 1
-letter45_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 0
-letter46_openai_gpt_4o_prompt_txt | 1 | 1 | 0 | 0 | 0 | 1 | 1 | 1 | 0
-letter48_openai_gpt_4o_prompt_txt | 1 | 1 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter49_openai_gpt_4o_prompt_txt | 0 | 0 | 0 | 0 | 0 | 1 | 0 | 0 | 0
-letter50_openai_gpt_4o_prompt_txt | 1 | 1 | 0 | 0 | 0 | 1 | 1 | 1 | 0
-letter51_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 1 | 0
-letter52_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 2 | 1 | 0
-letter53_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 1 | 1 | 0
-letter55_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 0
-letter57_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 1 | 1 | 0
-letter58_openai_gpt_4o_prompt_txt | 1 | 1 | 0 | 0 | 0 | 1 | 0 | 1 | 1
-letter59_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 1 | 1 | 0 | 0 | 0 | 0
-letter60_openai_gpt_4o_prompt_txt | 1 | 1 | 0 | 0 | 0 | 1 | 2 | 1 | 0
-letter61_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 0 | 0 | 0
-letter62_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 2 | 2 | 0
-letter63_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 1 | 1 | 0 | 0 | 1 | 0
-letter64_openai_gpt_4o_prompt_txt | 0 | 1 | 0 | 0 | 0 | 1 | 1 | 0 | 0
-letter65_openai_gpt_4o_prompt_txt | 0 | 0 | 1 | 0 | 0 | 1 | 0 | 0 | 0
+key | fuzzy | score | score_3 | scoresdfsdf_2
+--- | --- | --- | --- | ---
+request_T1_luther | - | 66 | 88 | 77
+request_T2_luther | - | 66 | 88 | 77
+request_T3_jaccuse | - | - | - | -
+request_T4_page_10 | 0.3465673457045231 | - | - | -
+request_T4_page_2 | 0.8739350612374078 | - | - | -

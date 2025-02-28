@@ -4,7 +4,7 @@ from scripts.scoring_helper import get_all_keys, get_nested_value, calculate_fuz
 
 class BibliographicData(Benchmark):
 
-    def score_answer(self, image_name, response, ground_truth):
+    def score_request_answer(self, image_name, response, ground_truth):
         data = self.prepare_scoring_data(response)
 
         my_keys = get_all_keys(ground_truth)

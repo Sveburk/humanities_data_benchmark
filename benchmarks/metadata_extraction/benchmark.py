@@ -8,20 +8,12 @@ import csv
 import json
 import os
 import logging
-from dataclasses import dataclass, field
-from typing import List, Optional, TypedDict, Dict, Literal
-from datetime import date
+from typing import Literal
 
 
 class MetadataExtraction(Benchmark):
 
-    @property
-    def resize_images(self) -> bool:
-        """If images are too large, resize them before sending to the model."""
 
-        return False
-
-    @property
     def update_required(self) -> bool:
         """ If an update of the ground truth is required before running the benchmark. """
 
@@ -145,7 +137,7 @@ class MetadataExtraction(Benchmark):
 
         return [s.strip() for s in cell.split('|') if s.strip()]
 
-    def score_answer(self,
+    def score_request_answer(self,
                      image_name: str,
                      response: dict,
                      ground_truth: dict) -> dict:

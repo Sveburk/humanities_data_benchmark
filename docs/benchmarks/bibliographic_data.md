@@ -23,3 +23,7 @@ to the philosophy of history between the years 1945 and 1957.
 - Each field is evaluated based on the fuzzy-string accuracy.
 - A score between 0 and 1 is assigned to each field.
 - The total score is the average of the scores of all fields.
+
+
+## Test Results
+
