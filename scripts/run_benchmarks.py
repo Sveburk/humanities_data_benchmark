@@ -14,6 +14,7 @@ load_dotenv()
 REGENERATE_RESULTS = False
 
 BENCHMARKS_DIR = '../benchmarks'
+REPORTS_DIR = "../docs"
 CONFIG_FILE = os.path.join(BENCHMARKS_DIR, 'benchmarks_tests.csv')
 
 def get_api_key(provider):
@@ -82,7 +83,7 @@ def main():
                 benchmark = load_benchmark(test_config)
                 if benchmark.is_runnable():
                     logger.info(f"Running {benchmark.get_title()}...")
-                    results = benchmark.run(regenerate_existing_results=REGENERATE_RESULTS)
+                    benchmark.run(regenerate_existing_results=REGENERATE_RESULTS)
                 else:
                     logger.error(f"Skipping {benchmark.get_title()} (not runnable).")
 

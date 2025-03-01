@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 
 from PIL import Image
@@ -9,7 +10,8 @@ def read_file(path):
         with open(path, 'r', encoding="utf-8") as file:
             return file.read()
     except FileNotFoundError:
-        return None
+        logging.error(f"File {path} not found.")
+        return ""
 
 def write_file(path, content):
     with open(path, 'w', encoding="utf-8") as file:

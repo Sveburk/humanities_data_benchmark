@@ -5,6 +5,9 @@ class TestBenchmark2(Benchmark):
     def resize_images(self) -> bool:
         return True
 
+    def score_benchmark(self, all_scores):
+        return {"score": "niy"}
+
     def score_request_answer(self, image_name, response, ground_truth):
         data = self.prepare_scoring_data(response)
         """print(data)
@@ -14,15 +17,15 @@ class TestBenchmark2(Benchmark):
 
     def create_request_render(self, image_name, result, score, truth):
         render = f"""
-## Result for image: {image_name}
+### Result for image: {image_name}
 
-### Prompt:
-{self.load_prompt()}
+#### Prompt:
+  {self.load_prompt()}
 
-### Response:
-{result['response_text']}
+#### Response:
+  {result['response_text']}
 
-### Ground Truth:
-{truth}"""
+#### Ground Truth:
+  {truth}"""
 
         return render

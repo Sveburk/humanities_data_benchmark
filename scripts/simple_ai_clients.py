@@ -170,7 +170,8 @@ class AiApiClient:
         elif self.api == 'genai':
             answer['response_text'] = response.text
         elif self.api == 'anthropic':
-            answer['response_text'] = response.choices[0].content
+            print(response)
+            answer['response_text'] = response.content[0].text
 
         return answer
 

@@ -1,8 +1,0 @@
-{
-    "provider": "genai",
-    "model": "gemini-2.0-flash",
-    "test_time": 5.896474123001099,
-    "execution_time": "2025-02-28T20:09:52.736227",
-    "response_text": "```json\n{\n\"persons_mentioned\": [\"Jesus Christ\", \"Martin Luther\", \"Laurentius\", \"Peter\", \"Severinus\"],\n\"places_mentioned\": [\"Wittenberg\", \"Basilica Sancti Petri\", \"Purgatory\", \"Heaven\", \"Hell\"],\n\"general_topic\": \"Disputation on the Power and Efficacy of Indulgences.\",\n\"important_dates\": [\"1517\"]\n}\n```",
-    "scores": {}
-}

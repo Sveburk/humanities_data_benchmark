@@ -4,11 +4,15 @@ evaluating the performance of large language models (LLMs) on tasks in the human
 intended to be a resource for researchers and practitioners who are interested in evaluating the performance
 of LLMs on DH-related tasks.
 
+> **ℹ Are you looking for test results?**
+  This README provides an overview of the benchmark suite and how to use it. 
+  For detailed test results, please visit the [test results page](https://rise-unibas.github.io/humanities_data_benchmark/)
+
+
 ## Table of Contents
 - [Terminology](#terminology)
-- [Datasets](#datasets)
-- [Tests and Results](#tests-and-results)
-- [Further Information](#further-information)
+- [How it Works](#how-it-works)
+- [Expand on this Benchmark Suite](#expand-on-this-benchmark-suite)
   - [Create a new benchmark](#create-a-new-benchmark)
   - [API Keys](#api-keys)
   - [Run a Benchmark](#run-a-benchmark)
@@ -40,22 +44,22 @@ and a prompt. The model will generate a response based on the request. At least 
 - **Score**: The score is the result of the evaluation. It indicates how well the model performed on the task.
 
 
-## Datasets
-The repository contains the following datasets:
+## How it Works
 
-| Benchmark                                                                                                                        | Description                                               | Information                                                                                                                                                                                                                                                                                                                                                             |
-|----------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- | [Metadata Extraction](benchmarks/metadata_extraction/README.md) | A benchmark for extracting metadata from images.        | ![imgs](https://img.shields.io/badge/images-65-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-letter--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Dataclass](https://img.shields.io/badge/type-dataclass-yellow) ![Language](https://img.shields.io/badge/lang-de-blue) |
-| [Bibliographic Data](benchmarks/bibliographic_data/README.md) | A benchmark for extracting bibliographic data from images. | ![imgs](https://img.shields.io/badge/images-2-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-list--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Dataclass](https://img.shields.io/badge/type-dataclass-yellow) ![Language](https://img.shields.io/badge/lang-eng-blue)   |
-| [Test Benchmark 1](benchmarks/test_benchmark/README.md)       | Extract Named Entities from Emile Zola's "J'accuse"       | ![img](https://img.shields.io/badge/image-1-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-article--like-%23D8BFD8) ![Output](https://img.shields.io/badge/output-json-yellow) ![Language](https://img.shields.io/badge/lang-fra-blue)                                                                   |
-| [Test Benchmark 2](benchmarks/test_benchmark2/README.md)      | Extract information from the 95 Theses by Martin Luther.  | ![img](https://img.shields.io/badge/image-1-blue) ![Status](https://img.shields.io/badge/st-active-brightgreen) ![Type](https://img.shields.io/badge/type-list--like-%239370DB) ![Output](https://img.shields.io/badge/output-json-yellow) ![Language](https://img.shields.io/badge/lang-lat-blue)                                                                      |
+1. **Load Test Configuration**
+2. **Load Data from Benchmark configuration**
+3. **Create Benchmark class instance**
+4. **Run Benchmark Tests**
+   - **Create Request JSON Results**
+   - **Create Request Renders**
+   - **Create Request Scores**
+   - **Create Benchmark Scores**
+   - **Create Benchmark Result Documentation**
+
+<img src="benchmark_run.png" alt="Test Results" width="80%">
 
 
-## Tests and Results
-TODO
-
-
-## Further Information
+## Expand on this Benchmark Suite
 
 ### Create a new benchmark
 To create a new benchmark, follow these steps:

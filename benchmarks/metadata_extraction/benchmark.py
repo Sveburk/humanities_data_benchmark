@@ -137,6 +137,9 @@ class MetadataExtraction(Benchmark):
 
         return [s.strip() for s in cell.split('|') if s.strip()]
 
+    def score_benchmark(self, all_scores):
+        return {"score": "niy"}
+
     def score_request_answer(self,
                      image_name: str,
                      response: dict,
