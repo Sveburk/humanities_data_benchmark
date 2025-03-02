@@ -1,1 +1,0 @@
-{"provider": "openai", "model": "gpt-4o", "test_time": 3.94871187210083, "execution_time": "2025-02-26T22:56:20.636105", "response_text": {"metadata": {"send_date": ["1928-04-25"], "letter_title": null, "sender_persons": ["Basler Personenschiffahrtsgesellschaft"], "receiver_persons": null}}, "scores": {}}

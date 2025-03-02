@@ -44,6 +44,26 @@ COLOR_PALETTE = [
     "#66ffff", "#ff0099", "#ff9966", "#33ffcc", "#99ccff", "#ff6699", "#ff6600", "#6699ff"
 ]
 
+def get_badge(label, value, color="brightgreen", r_to_g=None, href=None):
+
+    if r_to_g and isinstance(r_to_g, tuple):
+        # tuple[0] is the range start, tuple[1] is the range end
+        # The color goes from red to green
+        try:
+            if r_to_g[0] <= float(value) <= r_to_g[1]:
+                color = f"{'%02x' % int(255 * (r_to_g[1] - float(value)) / (r_to_g[1] - r_to_g[0]))}ff00"
+        except ValueError:
+            color = "red"
+
+    value = str(value)
+    value = value.replace("-", "--")
+
+    shield_html = f'<img src="https://img.shields.io/badge/{label}-{value}-{color}" alt="{label}">'
+    if href:
+        shield_html = f'<a href="{href}">{shield_html}</a>'
+
+    return shield_html
+
 
 def get_square(label, href=None):
     color_index = int(hashlib.md5(label.encode()).hexdigest(), 16) % 64

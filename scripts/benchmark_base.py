@@ -131,7 +131,7 @@ class Benchmark(ABC):
 
     def get_request_answer_path(self):
         date_str = datetime.now().strftime('%Y-%m-%d')
-        return str(os.path.join(self.benchmark_dir, 'results', date_str, self.id))
+        return str(os.path.join('..', 'results', date_str, self.id))
 
     def get_request_answer_file_name(self, image_name):
         """ Get the path to the answer file. """
@@ -139,7 +139,7 @@ class Benchmark(ABC):
 
     def get_request_render_path(self):
         date_str = datetime.now().strftime('%Y-%m-%d')
-        return str(os.path.join(self.benchmark_dir, 'renders', date_str, self.id))
+        return str(os.path.join('..', 'renders', date_str, self.id))
 
     def get_request_render_file_name(self, image_name):
         """ Get the path to the render file. """
@@ -162,7 +162,8 @@ class Benchmark(ABC):
                                 score: dict) -> None:
         """ Save the benchmark score to a file. """
         date_str = datetime.now().strftime('%Y-%m-%d')
-        save_path = os.path.join(self.benchmark_dir, "results", date_str, self.id, "scoring.json")
+        save_path = os.path.join('..', "results", date_str, self.id, "scoring.json")
+        os.makedirs(os.path.dirname(save_path), exist_ok=True)
         write_file(save_path, score)
 
     def prepare_scoring_data(self,

@@ -1,1 +1,0 @@
-{"provider": "openai", "model": "gpt-4o", "test_time": 8.621216773986816, "execution_time": "2025-02-26T22:54:42.495330", "response_text": {"metadata": {"send_date": ["1927-09-15"], "letter_title": null, "sender_persons": ["Basler Rheinschiffahrt-Aktiengesellschaft"], "receiver_persons": ["Herrn Rupprecht"]}}, "scores": {}}

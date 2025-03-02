@@ -1,1 +1,0 @@
-{"provider": "openai", "model": "gpt-4o", "test_time": 4.117727994918823, "execution_time": "2025-02-26T22:53:47.557893", "response_text": {"metadata": {"send_date": ["1926-03-29"], "letter_title": null, "sender_persons": null, "receiver_persons": ["Dr. W. Krastling"]}}, "scores": {}}

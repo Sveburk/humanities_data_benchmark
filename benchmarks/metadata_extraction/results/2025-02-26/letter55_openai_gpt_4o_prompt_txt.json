@@ -1,1 +1,0 @@
-{"provider": "openai", "model": "gpt-4o", "test_time": 4.089562892913818, "execution_time": "2025-02-26T22:58:32.366609", "response_text": {"metadata": {"send_date": ["1932-10-10"], "letter_title": null, "sender_persons": ["Jean Frey"], "receiver_persons": ["Dr. Max Vischer"]}}, "scores": {}}

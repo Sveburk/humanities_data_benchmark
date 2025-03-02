@@ -1,1 +1,0 @@
-{"provider": "openai", "model": "gpt-4o", "test_time": 3.7492358684539795, "execution_time": "2025-02-26T22:53:43.439165", "response_text": {"metadata": {"send_date": ["1926-03-26"], "letter_title": null, "sender_persons": ["W. W. Moser"], "receiver_persons": ["Herr Christ"]}}, "scores": {}}

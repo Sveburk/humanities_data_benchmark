@@ -1,1 +1,0 @@
-{"provider": "openai", "model": "gpt-4o", "test_time": 4.519294738769531, "execution_time": "2025-02-26T22:55:01.803376", "response_text": {"metadata": {"send_date": ["1928-02-23"], "letter_title": null, "sender_persons": ["Der Pr\u00e4sident"], "receiver_persons": null}}, "scores": {}}

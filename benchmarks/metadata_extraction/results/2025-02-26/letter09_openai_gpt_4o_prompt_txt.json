@@ -1,1 +1,0 @@
-{"provider": "openai", "model": "gpt-4o", "test_time": 8.380677461624146, "execution_time": "2025-02-26T22:54:14.124622", "response_text": {"metadata": {"send_date": ["1925-06-28"], "letter_title": null, "sender_persons": ["Max Vischer"], "receiver_persons": ["Herr Christ"]}}, "scores": {}}

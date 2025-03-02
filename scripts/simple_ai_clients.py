@@ -161,16 +161,13 @@ class AiApiClient:
 
         if self.api == 'openai':
             if self.dataclass:
-                print("------------> Using dataclass")
                 text = response.choices[0].message.parsed
                 answer['response_text'] = asdict(text)
             else:
-                print("------------> Not using dataclass")
                 answer['response_text'] = response.choices[0].message.content
         elif self.api == 'genai':
             answer['response_text'] = response.text
         elif self.api == 'anthropic':
-            print(response)
             answer['response_text'] = response.content[0].text
 
         return answer
