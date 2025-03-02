@@ -4,8 +4,7 @@ import os
 import sys
 from benchmark_base import Benchmark, DefaultBenchmark
 from dotenv import load_dotenv
-
-from scripts import logger
+import logging
 
 # Add project root to sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -39,10 +38,10 @@ def load_benchmark(test_config):
         # Class must have the same name as the benchmark folder but in CamelCase
         class_name = ''.join(part.capitalize() for part in benchmark_name.split('_'))
         benchmark_class = getattr(benchmark_module, class_name)
-        logger.info(f"Loaded {benchmark_name} from {benchmark_file}")
+        logging.info(f"Loaded {benchmark_name} from {benchmark_file}")
         return benchmark_class(test_config, api_key, benchmark_path)
     else:
-        logger.info(f"Loaded {benchmark_name} from Benchmark class")
+        logging.info(f"Loaded {benchmark_name} from Benchmark class")
         return DefaultBenchmark(test_config, api_key, benchmark_path)
 
 
@@ -82,10 +81,10 @@ def main():
             if test_config.get('legacy_test', 'false').lower() == 'false':
                 benchmark = load_benchmark(test_config)
                 if benchmark.is_runnable():
-                    logger.info(f"Running {benchmark.get_title()}...")
+                    logging.info(f"Running {benchmark.get_title()}...")
                     benchmark.run(regenerate_existing_results=REGENERATE_RESULTS)
                 else:
-                    logger.error(f"Skipping {benchmark.get_title()} (not runnable).")
+                    logging.error(f"Skipping {benchmark.get_title()} (not runnable).")
 
 
 if __name__ == "__main__":

@@ -2,9 +2,9 @@ import json
 import os
 import csv
 
-from scripts.data_loader import write_file, read_file
-from scripts.report_helper import get_square, create_html_table, get_rectangle, get_badge
-from scripts.run_benchmarks import BENCHMARKS_DIR, CONFIG_FILE, REPORTS_DIR
+from data_loader import write_file, read_file
+from report_helper import get_square, create_html_table, get_rectangle, get_badge
+from run_benchmarks import BENCHMARKS_DIR, CONFIG_FILE, REPORTS_DIR
 
 def load_test_configuration(test_id):
     """Load the test configuration from the configuration file."""

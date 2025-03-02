@@ -8,9 +8,9 @@ import tempfile
 from abc import ABC, abstractmethod
 from datetime import datetime
 
-from scripts.data_loader import read_file, resize_image, write_file
-from scripts.scoring_helper import remove_none
-from scripts.simple_ai_clients import AiApiClient
+from data_loader import read_file, resize_image, write_file
+from scoring_helper import remove_none
+from simple_ai_clients import AiApiClient
 
 
 class Benchmark(ABC):
