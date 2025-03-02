@@ -23,7 +23,15 @@ jobs:
         run: pip install mkdocs-material
 
       - name: Generate Navigation
-        run: python scripts/generate_reports.py
+        run: cd scripts
+             python generate_reports.py
 
       - name: Deploy MkDocs
         run: mkdocs gh-deploy --force
+
+      - name: Commit MkDocs Navigation Changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add mkdocs.yml
+          git commit -m "Update navigation in MkDocs" || echo "No changes to commit"
