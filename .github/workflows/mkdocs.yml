@@ -23,8 +23,9 @@ jobs:
         run: pip install mkdocs-material
 
       - name: Generate Navigation
-        run: cd scripts
-             python generate_reports.py
+        run:
+          cd scripts
+          python generate_reports.py
 
       - name: Deploy MkDocs
         run: mkdocs gh-deploy --force
