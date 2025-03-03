@@ -8,7 +8,6 @@ of LLMs on DH-related tasks.
   This README provides an overview of the benchmark suite and how to use it. 
   For detailed test results, please visit the [test results page](https://rise-unibas.github.io/humanities_data_benchmark/)
 
-
 ## Table of Contents
 - [Terminology](#terminology)
 - [How it Works](#how-it-works)
