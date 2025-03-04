@@ -13,7 +13,6 @@ from typing import Literal
 
 class MetadataExtraction(Benchmark):
 
-
     def update_required(self) -> bool:
         """ If an update of the ground truth is required before running the benchmark. """
 
@@ -141,9 +140,9 @@ class MetadataExtraction(Benchmark):
         return {"score": "niy"}
 
     def score_request_answer(self,
-                     image_name: str,
-                     response: dict,
-                     ground_truth: dict) -> dict:
+                             image_name: str,
+                             response: dict,
+                             ground_truth: dict) -> dict:
         """ Score the answer.
 
         :param image_name: the name of the image
@@ -155,8 +154,10 @@ class MetadataExtraction(Benchmark):
         logging.debug(f"response: {response}")
         logging.debug(f"ground_truth: {ground_truth}")
 
+        data = self.prepare_scoring_data(response)
+
         try:
-            raw_response_letter = response["response_text"]["metadata"]
+            raw_response_letter = data["metadata"]
             raw_response_letter["document_number"] = image_name
             response_letter = Letter(**raw_response_letter)
         except ValueError:
@@ -195,6 +196,39 @@ class MetadataExtraction(Benchmark):
                                            inferred_from_function=False,
                                            inferred_from_correspondence=False)
         return score
+
+    def create_request_render(self,
+                              image_name: str,
+                              result: dict,
+                              score: dict,
+                              ground_truth) -> str:
+
+        data = self.prepare_scoring_data(result)
+
+        try:
+            raw_response_letter = data["metadata"]
+            raw_response_letter["document_number"] = image_name
+            response_letter = Letter(**raw_response_letter)
+        except ValueError:
+            logging.error(f"Error parsing response for {image_name}")
+
+        try:
+            ground_truth["document_number"] = image_name
+            ground_truth_letter = Letter(**ground_truth)
+        except ValueError:
+            logging.error(f"ValueError parsing ground_truth for {image_name}")
+        except TypeError:
+            logging.error(f"TypeError parsing ground_truth for {image_name}")
+
+        try:
+            persons = json.load(open(os.path.join(self.benchmark_dir, "ground_truths", "persons.json")))
+        except FileNotFoundError:
+            logging.error("Persons ground truth not found.")
+
+        logging.info(f"prediction: {response_letter}")
+        logging.info(f"gt: {ground_truth_letter}")
+
+        return ""
 
     @staticmethod
     def score_send_date(ground_truth_letter: Letter,
