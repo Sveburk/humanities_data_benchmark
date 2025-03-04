@@ -2,6 +2,7 @@ import csv
 import importlib
 import os
 import sys
+import time
 from benchmark_base import Benchmark, DefaultBenchmark
 from dotenv import load_dotenv
 import logging
@@ -15,6 +16,16 @@ REGENERATE_RESULTS = False
 BENCHMARKS_DIR = '../benchmarks'
 REPORTS_DIR = "../docs"
 CONFIG_FILE = os.path.join(BENCHMARKS_DIR, 'benchmarks_tests.csv')
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s:%(name)s:%(message)s",
+    handlers=[
+        logging.FileHandler(f"logs/{time.strftime('%Y%m%d-%H%M%S')}.log"),
+        logging.StreamHandler(),
+    ]
+)
 
 def get_api_key(provider):
     """Get the API key for the provider."""
