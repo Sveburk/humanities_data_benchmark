@@ -10,11 +10,13 @@ class Person:
     """Representation of a person.
 
     :param name: name of the person
+    :param alternate_names: alternate names of the person
     :param inferred_from_function: whether the person was inferred from a job function
     :param inferred_from_correspondence: whether the person was inferred from the correspondence history
     """
 
     name: str
+    alternate_names: list = None
     inferred_from_function: bool = False
     inferred_from_correspondence: bool = False
 
