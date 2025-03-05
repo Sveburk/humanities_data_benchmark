@@ -1,0 +1,21 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 2.273923873901367,
+    "execution_time": "2025-03-05T09:25:06.896219",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1928-09-28"
+            ],
+            "letter_title": null,
+            "sender_persons": [
+                "Verein f\u00fcr die Schiffahrt auf dem Oberrhein"
+            ],
+            "receiver_persons": [
+                "Dr. Max Vischer"
+            ]
+        }
+    },
+    "scores": {}
+}

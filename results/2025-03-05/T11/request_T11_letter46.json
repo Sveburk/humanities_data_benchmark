@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4.5-preview",
+    "test_time": 15.529544830322266,
+    "execution_time": "2025-03-05T15:23:05.379644",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1929-05-27"
+            ],
+            "letter_title": [
+                "Kaufofferte der Basler Rheinschiffahrt A.-G."
+            ],
+            "sender_persons": [
+                "Basler Personenschiffahrtsgesellschaft"
+            ],
+            "receiver_persons": [
+                "Herrn F. L\u00fctzelochwab"
+            ]
+        }
+    },
+    "scores": {}
+}

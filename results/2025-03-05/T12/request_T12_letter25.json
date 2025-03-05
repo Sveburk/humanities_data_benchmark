@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 4.622745037078857,
+    "execution_time": "2025-03-05T15:28:15.888275",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1928-04-04"
+            ],
+            "letter_title": [
+                "Betreff Kauf 'Rheinfelden'"
+            ],
+            "sender_persons": [
+                "Basler Rheinschiffahrt-Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Basler Personenschifffahrtgesellschaft"
+            ]
+        }
+    },
+    "scores": {}
+}

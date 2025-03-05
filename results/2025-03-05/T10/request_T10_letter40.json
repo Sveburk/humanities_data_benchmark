@@ -1,0 +1,21 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 3.0485126972198486,
+    "execution_time": "2025-03-05T09:24:56.653877",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1928-05-29"
+            ],
+            "letter_title": null,
+            "sender_persons": [
+                "M. Herzog"
+            ],
+            "receiver_persons": [
+                "Dr. Max Vischer"
+            ]
+        }
+    },
+    "scores": {}
+}

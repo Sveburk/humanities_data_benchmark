@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 4.170998573303223,
+    "execution_time": "2025-03-05T15:29:36.130031",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1932-04-16"
+            ],
+            "letter_title": [
+                "Letter to Herr Dr. Kas. Pichler"
+            ],
+            "sender_persons": [
+                "W. Meile"
+            ],
+            "receiver_persons": [
+                "Dr. Kas. Pichler"
+            ]
+        }
+    },
+    "scores": {}
+}

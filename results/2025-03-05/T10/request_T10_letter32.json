@@ -1,0 +1,22 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 8.126318216323853,
+    "execution_time": "2025-03-05T09:24:35.067814",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1928-05-03"
+            ],
+            "letter_title": null,
+            "sender_persons": [
+                "Rittar",
+                "Groeschupf"
+            ],
+            "receiver_persons": [
+                "W. Stauffacher"
+            ]
+        }
+    },
+    "scores": {}
+}

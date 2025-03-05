@@ -30,9 +30,12 @@ class Person:
         :param person: string representation of a person (i.e., their name)
         """
 
-        person = person.strip()
-        if person.startswith("<<") and person.endswith(">>"):
-            return Person(name=person[2:-2].strip(), inferred_from_correspondence=True)
-        elif person.startswith("<") and person.endswith(">"):
-            return Person(name=person[1:-1].strip(), inferred_from_function=True)
-        return Person(name=person)
+        try:
+            person = person.strip()
+            if person.startswith("<<") and person.endswith(">>"):
+                return Person(name=person[2:-2].strip(), inferred_from_correspondence=True)
+            elif person.startswith("<") and person.endswith(">"):
+                return Person(name=person[1:-1].strip(), inferred_from_function=True)
+            return Person(name=person)
+        except AttributeError:
+            return Person(name=None)

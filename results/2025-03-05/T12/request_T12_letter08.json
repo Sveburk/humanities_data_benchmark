@@ -1,0 +1,24 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 5.931131362915039,
+    "execution_time": "2025-03-05T15:26:50.561201",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1926-06-26"
+            ],
+            "letter_title": [
+                "Gesch\u00e4ftsleitung der Internationalen Ausstellung f\u00fcr Binnenschifffahrt und Wasserwirtschaft"
+            ],
+            "sender_persons": [
+                "Die Basler Rheinschifffahrt Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Herrn O. Ritter",
+                "Direktion der Basler Rheinschifffahrt Aktiengesellschaft"
+            ]
+        }
+    },
+    "scores": {}
+}

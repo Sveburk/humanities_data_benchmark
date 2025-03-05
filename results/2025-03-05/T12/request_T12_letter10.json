@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 2.807330369949341,
+    "execution_time": "2025-03-05T15:26:58.134247",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1926-07-13"
+            ],
+            "letter_title": [
+                "Betr. 'ALBATROS'"
+            ],
+            "sender_persons": [
+                "Baker Personenschiffahrtsgesellschaft"
+            ],
+            "receiver_persons": [
+                "Elektrizit\u00e4tswerk"
+            ]
+        }
+    },
+    "scores": {}
+}

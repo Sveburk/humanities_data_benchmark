@@ -25,6 +25,14 @@ nav:
     - T08: tests/T08.md
     - T09: tests/T09.md
     - T10: tests/T10.md
+    - T11: tests/T11.md
+    - T12: tests/T12.md
+    - T13: tests/T13.md
+    - T14: tests/T14.md
+    - T15: tests/T15.md
+    - T16: tests/T16.md
+    - T17: tests/T17.md
+    - T18: tests/T18.md
 
   - Benchmarks:
     - bibliographic_data: benchmarks/bibliographic_data.md
@@ -33,6 +41,36 @@ nav:
     - test_benchmark2: benchmarks/test_benchmark2.md
   - Archive:
     - Overview: archive/overview.md
+    - 2025-03-05:
+        - T01: archive/2025-03-05/T01.md
+        - T02: archive/2025-03-05/T02.md
+        - T03: archive/2025-03-05/T03.md
+        - T04: archive/2025-03-05/T04.md
+        - T05: archive/2025-03-05/T05.md
+        - T06: archive/2025-03-05/T06.md
+        - T07: archive/2025-03-05/T07.md
+        - T08: archive/2025-03-05/T08.md
+        - T09: archive/2025-03-05/T09.md
+        - T10: archive/2025-03-05/T10.md
+        - T11: archive/2025-03-05/T11.md
+        - T12: archive/2025-03-05/T12.md
+        - T13: archive/2025-03-05/T13.md
+        - T14: archive/2025-03-05/T14.md
+        - T15: archive/2025-03-05/T15.md
+        - T16: archive/2025-03-05/T16.md
+        - T17: archive/2025-03-05/T17.md
+        - T18: archive/2025-03-05/T18.md
+    - 2025-03-04:
+        - T01: archive/2025-03-04/T01.md
+        - T02: archive/2025-03-04/T02.md
+        - T03: archive/2025-03-04/T03.md
+        - T04: archive/2025-03-04/T04.md
+        - T05: archive/2025-03-04/T05.md
+        - T06: archive/2025-03-04/T06.md
+        - T07: archive/2025-03-04/T07.md
+        - T08: archive/2025-03-04/T08.md
+        - T09: archive/2025-03-04/T09.md
+        - T10: archive/2025-03-04/T10.md
     - 2025-03-02:
         - T06: archive/2025-03-02/T06.md
         - T07: archive/2025-03-02/T07.md

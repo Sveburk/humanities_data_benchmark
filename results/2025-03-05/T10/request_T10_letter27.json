@@ -1,0 +1,21 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 2.7899117469787598,
+    "execution_time": "2025-03-05T09:24:17.715685",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1928-04-23"
+            ],
+            "letter_title": null,
+            "sender_persons": [
+                "Basler Rheinschifffahrt-Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Herrn Oettinger"
+            ]
+        }
+    },
+    "scores": {}
+}

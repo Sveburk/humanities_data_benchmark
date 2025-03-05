@@ -1,0 +1,24 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 3.7292001247406006,
+    "execution_time": "2025-03-05T15:30:17.524981",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1933-07-04"
+            ],
+            "letter_title": [
+                "An die Basler Rheinschifffahrt A.-G."
+            ],
+            "sender_persons": [
+                "D. K. Fischer",
+                "Arthus Dullinger"
+            ],
+            "receiver_persons": [
+                "Basler Rheinschifffahrt A.-G."
+            ]
+        }
+    },
+    "scores": {}
+}

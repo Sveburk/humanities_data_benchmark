@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4.5-preview",
+    "test_time": 10.842100143432617,
+    "execution_time": "2025-03-05T15:23:53.043835",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1932-09-23"
+            ],
+            "letter_title": [
+                "null"
+            ],
+            "sender_persons": [
+                "null"
+            ],
+            "receiver_persons": [
+                "Basler Rheinschiffahrts Aktiengesellschaft Direktion"
+            ]
+        }
+    },
+    "scores": {}
+}

@@ -43,6 +43,13 @@ This page provides an overview of all benchmark tests.Click on the test name to 
   </tr></thead>
   <tbody>
 <tr>
+    <td>2025-03-05</td>
+    <td><a href='/archive/2025-03-05/T07'><span class='test-square' style='background-color: #ff99cc;'>T07</span></a>&nbsp;<a href='/archive/2025-03-05/T08'><span class='test-square' style='background-color: #ffcc33;'>T08</span></a>&nbsp;<a href='/archive/2025-03-05/T09'><span class='test-square' style='background-color: #ff0066;'>T09</span></a>&nbsp;</td>
+    <td><a href='/archive/2025-03-05/T10'><span class='test-square' style='background-color: #ff6600;'>T10</span></a>&nbsp;<a href='/archive/2025-03-05/T11'><span class='test-square' style='background-color: #ff6600;'>T11</span></a>&nbsp;<a href='/archive/2025-03-05/T12'><span class='test-square' style='background-color: #6633ff;'>T12</span></a>&nbsp;<a href='/archive/2025-03-05/T13'><span class='test-square' style='background-color: #ff6600;'>T13</span></a>&nbsp;<a href='/archive/2025-03-05/T14'><span class='test-square' style='background-color: #34495e;'>T14</span></a>&nbsp;<a href='/archive/2025-03-05/T15'><span class='test-square' style='background-color: #ff0099;'>T15</span></a>&nbsp;<a href='/archive/2025-03-05/T16'><span class='test-square' style='background-color: #33ffcc;'>T16</span></a>&nbsp;<a href='/archive/2025-03-05/T17'><span class='test-square' style='background-color: #9b59b6;'>T17</span></a>&nbsp;<a href='/archive/2025-03-05/T18'><span class='test-square' style='background-color: #99ff33;'>T18</span></a>&nbsp;</td>
+    <td><a href='/archive/2025-03-05/T01'><span class='test-square' style='background-color: #99ccff;'>T01</span></a>&nbsp;<a href='/archive/2025-03-05/T02'><span class='test-square' style='background-color: #0099ff;'>T02</span></a>&nbsp;<a href='/archive/2025-03-05/T03'><span class='test-square' style='background-color: #33ccff;'>T03</span></a>&nbsp;</td>
+    <td><a href='/archive/2025-03-05/T04'><span class='test-square' style='background-color: #ff3300;'>T04</span></a>&nbsp;<a href='/archive/2025-03-05/T05'><span class='test-square' style='background-color: #2c3e50;'>T05</span></a>&nbsp;<a href='/archive/2025-03-05/T06'><span class='test-square' style='background-color: #33ccff;'>T06</span></a>&nbsp;</td>
+</tr>
+<tr>
     <td>2025-03-02</td>
     <td><a href='/archive/2025-03-02/T07'><span class='test-square' style='background-color: #ff99cc;'>T07</span></a>&nbsp;<a href='/archive/2025-03-02/T08'><span class='test-square' style='background-color: #ffcc33;'>T08</span></a>&nbsp;<a href='/archive/2025-03-02/T09'><span class='test-square' style='background-color: #ff0066;'>T09</span></a>&nbsp;</td>
     <td></td>

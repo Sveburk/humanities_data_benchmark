@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 3.4832870960235596,
+    "execution_time": "2025-03-05T15:29:51.237073",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1932-10-10"
+            ],
+            "letter_title": [
+                "Verein f\u00fcr die Schifffahrt auf dem Oberrhein"
+            ],
+            "sender_persons": [
+                "Jean Aubrey"
+            ],
+            "receiver_persons": [
+                "Dr. Max Vischer"
+            ]
+        }
+    },
+    "scores": {}
+}

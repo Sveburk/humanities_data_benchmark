@@ -1,0 +1,13 @@
+### Result for letter51
+| Metric           | Ground Truth | Prediction | TP | FP | FN |
+|------------------|--------------|------------|----|----|----|
+| `send_date`        | 1932-09-23 | 1932-09-25 | 0 | 1 | 1 |
+| `sender_persons`  | None | null | 0 | 0 | 0 |
+| `receiver_persons` | None | null | 0 | 0 | 0 |
+
+| Name | Alternate Names |
+| --- | --- |
+
+`inferred_from_function`: False
+
+`inferred_from_correspondence`: False

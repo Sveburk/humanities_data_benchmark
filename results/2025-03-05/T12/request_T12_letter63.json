@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 3.3257334232330322,
+    "execution_time": "2025-03-05T15:30:20.927954",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1953-08-15"
+            ],
+            "letter_title": [
+                "Letter to the Basler Rheinschifffahrte A.-G."
+            ],
+            "sender_persons": [
+                "Basler Personenschiffahrtsgesellschaft"
+            ],
+            "receiver_persons": [
+                "Basler Rheinschifffahrte A.-G."
+            ]
+        }
+    },
+    "scores": {}
+}

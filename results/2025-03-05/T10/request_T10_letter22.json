@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 5.967499732971191,
+    "execution_time": "2025-03-05T09:23:56.463343",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1928-04-02"
+            ],
+            "letter_title": [
+                "Betrifft Schifffahrt Basel-Rheinfelden"
+            ],
+            "sender_persons": [
+                "Basler Rheinschiffahrt-Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Kur- und Verkehrsverein Rheinfelden"
+            ]
+        }
+    },
+    "scores": {}
+}

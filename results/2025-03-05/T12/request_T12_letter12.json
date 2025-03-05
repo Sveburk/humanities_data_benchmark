@@ -1,0 +1,24 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 4.323805093765259,
+    "execution_time": "2025-03-05T15:27:06.043902",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1926-08-13"
+            ],
+            "letter_title": [
+                "Confirmation of Letter"
+            ],
+            "sender_persons": [
+                "J.A. Ritter",
+                "Groschopf"
+            ],
+            "receiver_persons": [
+                "Dr. Max Vischer"
+            ]
+        }
+    },
+    "scores": {}
+}

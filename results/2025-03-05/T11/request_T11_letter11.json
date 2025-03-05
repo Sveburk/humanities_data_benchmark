@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4.5-preview",
+    "test_time": 13.125727891921997,
+    "execution_time": "2025-03-05T15:16:57.389504",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1928-07-14"
+            ],
+            "letter_title": [
+                "null"
+            ],
+            "sender_persons": [
+                "Basler Personenschiffahrtsgesellschaft"
+            ],
+            "receiver_persons": [
+                "Redaktion der Basler Nachrichten"
+            ]
+        }
+    },
+    "scores": {}
+}

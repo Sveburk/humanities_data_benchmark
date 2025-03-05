@@ -1,2 +1,7 @@
 # Metadata Extraction
-TODO
+
+#
+
+## how gt was created
+
+## how scoring works

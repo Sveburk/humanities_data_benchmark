@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 4.1591691970825195,
+    "execution_time": "2025-03-05T15:26:44.319013",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1926-06-22"
+            ],
+            "letter_title": [
+                "Letter from Basler Rheinschiffahrt-Aktiengesellschaft"
+            ],
+            "sender_persons": [
+                "Basler Rheinschiffahrt-Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Herr P. Christ"
+            ]
+        }
+    },
+    "scores": {}
+}
