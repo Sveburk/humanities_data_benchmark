@@ -62,8 +62,12 @@ class MetadataExtraction(Benchmark):
 
         data = self.prepare_scoring_data(response)
 
-        response_letter = self._initialize_letter(raw_letter=data["metadata"],
-                                                  image_name=image_name)
+        try:
+            response_letter = self._initialize_letter(raw_letter=data["metadata"],
+                                                      image_name=image_name)
+        except KeyError:
+            response_letter = self._initialize_letter(raw_letter=data,
+                                                      image_name=image_name)
         ground_truth_letter = self._initialize_letter(raw_letter=ground_truth,
                                                       image_name=image_name)
 
@@ -109,8 +113,12 @@ class MetadataExtraction(Benchmark):
 
         data = self.prepare_scoring_data(result)
 
-        response_letter = self._initialize_letter(raw_letter=data["metadata"],
-                                                  image_name=image_name)
+        try:
+            response_letter = self._initialize_letter(raw_letter=data["metadata"],
+                                                      image_name=image_name)
+        except KeyError:
+            response_letter = self._initialize_letter(raw_letter=data,
+                                                      image_name=image_name)
         ground_truth_letter = self._initialize_letter(raw_letter=ground_truth,
                                                       image_name=image_name)
 
@@ -145,7 +153,6 @@ class MetadataExtraction(Benchmark):
         persons_table = "| Name | Alternate Names |\n"
         persons_table += "| --- | --- |\n"
 
-        logging.info(f"ground_truth_persons: {ground_truth_persons}")
         for person in ground_truth_persons:
             try:
                 person.alternate_names.sort()
