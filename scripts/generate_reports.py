@@ -248,7 +248,7 @@ def create_test_runs_pages():
                         for key, value in score_data.items():
                             score_html += get_badge(key, value) + "&nbsp;"
 
-                        table_data.append([date, score_html, "<a href='/archive/" + date + "/" + test + "'>Details</a>"])
+                        table_data.append([date, score_html, "<a href='humanities_data_benchmark/archive/" + date + "/" + test + "'>Details</a>"])
 
             test_run_md += create_html_table(["Date", "Results", "Details"], table_data)
             write_file(test_run_file, test_run_md)
