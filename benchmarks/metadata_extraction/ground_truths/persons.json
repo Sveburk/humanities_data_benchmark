@@ -16,7 +16,10 @@
             "Herr Stauffacher",
             "Herr Werner Stauffacher",
             "W. Stauffacher",
-            "Direktor Werner Stauffacher"
+            "Direktor Werner Stauffacher",
+            "Herrn Direktor Werner Stauffacher",
+            "Werner Stauffacher",
+            "Stauffacher"
         ],
         "birthDate": "1868",
         "deathDate": "1932",
@@ -171,7 +174,9 @@
         "alternateName": [
             "Meile",
             "Dr. W. Meile",
-            "Dr. W. Meile-WELTl"
+            "Dr. W. Meile-WELTl",
+            "Dr. W. Meile-Welti",
+            "W. Meile-Welti"
         ],
         "birthDate": "1886",
         "deathDate": "1973",
@@ -283,7 +288,9 @@
             "praesident vischer",
             "Dr. M. Vischer-von Planta",
             "Dr. M. Vischer - von Planta",
-            "V."
+            "V.",
+            "Dr. Vischer - von Planta",
+            "Dr. Max Fischer"
         ],
         "birthDate": "1888",
         "deathDate": "1975",
@@ -388,7 +395,8 @@
             "Herr P. Christ - Wackernagel",
             "P. Christ-Wackernagel",
             "Herr P. Christ",
-            "Herrn P. Christ"
+            "Herrn P. Christ",
+            "P. Christ - Wackernagel"
         ],
         "birthDate": "1879-08-01",
         "deathDate": "1950-08-08",
@@ -481,7 +489,8 @@
             "Herr Ritter",
             "J.A. Ritter",
             "J.A.Ritter",
-            "Fritz Ritter"
+            "Fritz Ritter",
+            "Herr Fritz Ritter"
         ],
         "birthDate": "1891",
         "deathDate": null,
@@ -913,7 +922,8 @@
         "name": "L\u00fctzelschwab, F.",
         "alternateName": [
             "Herrn F. L\u00fctzelschwab",
-            "F. L\u00fctzelauschwab"
+            "F. L\u00fctzelauschwab",
+            "Herr F. L\u00fctzeleschwab"
         ],
         "birthDate": null,
         "deathDate": null,
@@ -964,7 +974,8 @@
             "Herrn Oettinger",
             "Herr Oettinger",
             "A. Oettinger",
-            "A.Oettinger"
+            "A.Oettinger",
+            "Herrn A. Oettinger"
         ],
         "birthDate": null,
         "deathDate": null,
