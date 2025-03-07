@@ -144,7 +144,7 @@ class MetadataExtraction(Benchmark):
         except FileNotFoundError:
             logging.error("Persons ground truth not found.")
 
-        scoring_table = "| Metric           | Ground Truth | Prediction | TP | FP | FN |\n"
+        scoring_table = "| Category          | Ground Truth | Prediction | TP | FP | FN |\n"
         scoring_table += "|------------------|--------------|------------|----|----|----|\n"
         scoring_table += f"| `send_date`        | {ground_truth_letter.send_date} | {response_letter.send_date} | {score['send_date_tp']} | {score['send_date_fp']} | {score['send_date_fn']} |\n"
         scoring_table += f"| `sender_persons`  | {self._make_render_person(persons=ground_truth_sender_persons)} | {self._make_render_person(persons=response_letter.sender_persons)} | {score['sender_persons_tp']} | {score['sender_persons_fp']} | {score['sender_persons_fn']} |\n"
