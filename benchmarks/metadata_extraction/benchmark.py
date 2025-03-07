@@ -247,7 +247,7 @@ class MetadataExtraction(Benchmark):
         rendered_persons = []
         try:
             for person in persons:
-                if person.name == "None":
+                if person.name == "None" or person.name == "null":
                     return None
                 rendered_persons.append(person.name)
             if len(rendered_persons) == 0:
