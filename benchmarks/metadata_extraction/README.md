@@ -118,6 +118,7 @@ The scoring of the letter is as follows:
 ### Scoring the collection
 
 With scores for each letter in place, we can calculate the overall performance of an LLM on the collection. We calculate F1-micro and F1-macro:
+
 - F1 is the harmonic mean of precision and recall, where precision is TP / (TP + FP) and recall is TP / (TP + FN).
 - F1-micro is the harmonic mean of precision and recall across all categories.
 - F1-macro is the average of F1 scores across all categories.
