@@ -1,0 +1,21 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 13.884576082229614,
+    "execution_time": "2025-04-01T13:47:33.228947",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1925-06-28"
+            ],
+            "letter_title": null,
+            "sender_persons": [
+                "Max Vischer"
+            ],
+            "receiver_persons": [
+                "P. Christ-Wackernagel"
+            ]
+        }
+    },
+    "scores": {}
+}

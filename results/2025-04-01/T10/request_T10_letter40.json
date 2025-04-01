@@ -1,0 +1,21 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 5.050251007080078,
+    "execution_time": "2025-04-01T13:49:21.709379",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1928-05-29"
+            ],
+            "letter_title": null,
+            "sender_persons": [
+                "M. Rosenbaum"
+            ],
+            "receiver_persons": [
+                "Dr. Max Vischer"
+            ]
+        }
+    },
+    "scores": {}
+}

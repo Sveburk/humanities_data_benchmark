@@ -1,0 +1,8 @@
+{
+    "provider": "genai",
+    "model": "gemini-2.5-pro-exp-03-25",
+    "test_time": 9.677691221237183,
+    "execution_time": "2025-04-01T14:58:26.946320",
+    "response_text": "```json\n{\n    \"letter_title\": [\n        null\n    ],\n    \"send_date\": [\n        \"1935-08-17\"\n    ],\n    \"sender_persons\": [\n        \"Basler Personenschifffahrtsgesellschaft\"\n    ],\n    \"receiver_persons\": [\n        \"Fritz Ritter\"\n    ]\n}\n```",
+    "scores": {}
+}

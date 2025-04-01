@@ -1,0 +1,22 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 3.468590497970581,
+    "execution_time": "2025-04-01T13:50:16.593571",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1933-07-04"
+            ],
+            "letter_title": null,
+            "sender_persons": [
+                "Dr. H. Fischer",
+                "Arthur Aellig"
+            ],
+            "receiver_persons": [
+                "Basler Rheinschiffahrts A.-G."
+            ]
+        }
+    },
+    "scores": {}
+}

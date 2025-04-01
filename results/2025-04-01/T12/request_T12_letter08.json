@@ -1,0 +1,25 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 5.581560134887695,
+    "execution_time": "2025-04-01T16:12:01.675395",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1926-06-26"
+            ],
+            "letter_title": [
+                "Gesch\u00e4ftsleitung der Internationalen Ausstellung f\u00fcr Binnenschifffahrt und Wasserkr\u00e4ftenutzung"
+            ],
+            "sender_persons": [
+                "Die Basler Rheinschifffahrt Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Herrn Christ",
+                "Herrn Groeschupf",
+                "Dr. Kraeting"
+            ]
+        }
+    },
+    "scores": {}
+}

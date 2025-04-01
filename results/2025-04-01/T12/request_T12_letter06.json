@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 3.5969536304473877,
+    "execution_time": "2025-04-01T16:11:51.197281",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1926-03-29"
+            ],
+            "letter_title": [
+                "Brief an die Basler Rheinschifffahrt-Aktiengesellschaft"
+            ],
+            "sender_persons": [
+                "null"
+            ],
+            "receiver_persons": [
+                "Basler Rheinschifffahrt-Aktiengesellschaft"
+            ]
+        }
+    },
+    "scores": {}
+}

@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 2.532083511352539,
+    "execution_time": "2025-04-01T13:49:06.658373",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1934-05-10"
+            ],
+            "letter_title": [
+                "Betr. Abrechnung"
+            ],
+            "sender_persons": [
+                "Basler Rheinschiffahrt-Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Basler Personenschifffahrtsgesellschaft"
+            ]
+        }
+    },
+    "scores": {}
+}

@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 2.734224557876587,
+    "execution_time": "2025-04-01T16:14:16.917133",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1932-10-04"
+            ],
+            "letter_title": [
+                "Correspondence Regarding Navigation and Services"
+            ],
+            "sender_persons": [
+                "Basler Rheinschifffahrt Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Dr. Max Vischer"
+            ]
+        }
+    },
+    "scores": {}
+}

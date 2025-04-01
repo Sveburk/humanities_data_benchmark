@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o-mini",
+    "test_time": 2.965545892715454,
+    "execution_time": "2025-04-01T16:14:25.121178",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1932-10-15"
+            ],
+            "letter_title": [
+                "Letter regarding the construction of a new passenger ship"
+            ],
+            "sender_persons": [
+                "Basler Rheinschiffahrt Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Dr. Max Vischer"
+            ]
+        }
+    },
+    "scores": {}
+}

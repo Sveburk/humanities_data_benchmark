@@ -1,0 +1,17 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 1.2819788455963135,
+    "execution_time": "2025-04-01T13:49:40.929276",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1932-09-09"
+            ],
+            "letter_title": null,
+            "sender_persons": null,
+            "receiver_persons": null
+        }
+    },
+    "scores": {}
+}

@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4.5-preview",
+    "test_time": 10.158276557922363,
+    "execution_time": "2025-04-01T16:21:42.513207",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1932-10-10"
+            ],
+            "letter_title": [
+                "null"
+            ],
+            "sender_persons": [
+                "[Signature illegible]"
+            ],
+            "receiver_persons": [
+                "Dr. Max Vischer"
+            ]
+        }
+    },
+    "scores": {}
+}

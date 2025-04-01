@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4.5-preview",
+    "test_time": 7.6697680950164795,
+    "execution_time": "2025-04-01T16:22:59.082084",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1933-08-15"
+            ],
+            "letter_title": [
+                "null"
+            ],
+            "sender_persons": [
+                "null"
+            ],
+            "receiver_persons": [
+                "null"
+            ]
+        }
+    },
+    "scores": {}
+}

@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 2.5524706840515137,
+    "execution_time": "2025-04-01T13:48:05.064493",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1928-03-01"
+            ],
+            "letter_title": [
+                "Betrifft Ihr Schreiben vom 27. Februar"
+            ],
+            "sender_persons": [
+                "Basler Rheinschiffahrt-Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Basler Personenschiffahrtgesellschaft"
+            ]
+        }
+    },
+    "scores": {}
+}

@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 2.932051181793213,
+    "execution_time": "2025-04-01T13:47:10.003734",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1926-03-29"
+            ],
+            "letter_title": [
+                "Internationale Ausstellung f\u00fcr Binnenschiffahrt und Wasserkraftnutzung Basel 1926"
+            ],
+            "sender_persons": [
+                "Unknown"
+            ],
+            "receiver_persons": [
+                "Dr. W. Krasting"
+            ]
+        }
+    },
+    "scores": {}
+}

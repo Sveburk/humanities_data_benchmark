@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4.5-preview",
+    "test_time": 12.533287763595581,
+    "execution_time": "2025-04-01T13:51:49.155352",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1926-06-26"
+            ],
+            "letter_title": [
+                "Gesch\u00e4ftsleitung der Internationalen Ausstellung f\u00fcr Binnenschiffahrt und Wasserkraftnutzung"
+            ],
+            "sender_persons": [
+                "Basler Personenschiffahrtsgesellschaft"
+            ],
+            "receiver_persons": [
+                "Gesch\u00e4ftsleitung der Internationalen Ausstellung f\u00fcr Binnenschiffahrt und Wasserkraftnutzung Basel"
+            ]
+        }
+    },
+    "scores": {}
+}
