@@ -239,7 +239,7 @@ This page provides an overview of all tests. Click on the test name to see the d
     <td><span class='test-rectangle' style='background-color: #ff5050;'>anthropic</span></td>
     <td><span class='test-rectangle' style='background-color: #cc6699;'>claude-3-5-sonnet-20241022</span></td>
     <td>Document</td>
-add    <td>0.0</td>
+    <td>0.0</td>
     <td>You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history</td>
     <td>prompt.txt</td>
     <td>false</td>
@@ -274,6 +274,28 @@ add    <td>0.0</td>
     <td>Document</td>
     <td>0.0</td>
     <td>You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history</td>
+    <td>prompt.txt</td>
+    <td>false</td>
+</tr>
+<tr>
+    <td><a href='tests/T22'><span class='test-square' style='background-color: #2980b9;'>T22</span></a></td>
+    <td><a href="/benchmarks/fraktur/">fraktur</a></td>
+    <td><span class='test-rectangle' style='background-color: #ffcc33;'>genai</span></td>
+    <td><span class='test-rectangle' style='background-color: #e74c3c;'>gemini-2.5-pro-exp-03-25</span></td>
+    <td></td>
+    <td>0.0</td>
+    <td>You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history</td>
+    <td>prompt.txt</td>
+    <td>false</td>
+</tr>
+<tr>
+    <td><a href='tests/T23'><span class='test-square' style='background-color: #ff0066;'>T23</span></a></td>
+    <td><a href="/benchmarks/metadata_extraction/">metadata_extraction</a></td>
+    <td><span class='test-rectangle' style='background-color: #f1c40f;'>mistral</span></td>
+    <td><span class='test-rectangle' style='background-color: #34495e;'>pixtral-large-latest</span></td>
+    <td>Document</td>
+    <td>0.0</td>
+    <td>You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history. You only return valid JSON an no other text.</td>
     <td>prompt.txt</td>
     <td>false</td>
 </tr>
