@@ -1,0 +1,23 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 4.375114440917969,
+    "execution_time": "2025-04-01T13:49:39.569298",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1932-09-07"
+            ],
+            "letter_title": [
+                "Betr. Personenschifffahrt"
+            ],
+            "sender_persons": [
+                "Basler Rheinschiffahrt Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Dr. M. Vischer-von Planta"
+            ]
+        }
+    },
+    "scores": {}
+}

@@ -19,7 +19,7 @@ This benchmark focuses on the extraction of metadata from historic letters. It p
 
 ## Creator
 
-This benchmark was created by the University of Basel's Research and Infrastructure Support RISE (rise@unibas.ch) in between 2022 and 2025.
+This benchmark was created by the University of Basel's Research and Infrastructure Support RISE (rise@unibas.ch) between 2022 and 2025.
 
 ## Historic Rheinschifffahrt Letters
 

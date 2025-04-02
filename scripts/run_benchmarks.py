@@ -90,7 +90,7 @@ def main(limit_to: list[str] = None):
 
     This function reads the configuration file, loads the benchmarks,
     and runs each benchmark based on the configuration.
-    It also generates a Markdown table of results.
+    It also generates a markdown table of results.
 
     :param limit_to: Optional list of benchmark ids (such as T01, T99) to limit the execution to, defaults to None
     """

@@ -1,0 +1,21 @@
+{
+    "provider": "openai",
+    "model": "gpt-4o",
+    "test_time": 4.055208921432495,
+    "execution_time": "2025-04-01T13:47:43.953099",
+    "response_text": {
+        "metadata": {
+            "send_date": [
+                "1926-08-13"
+            ],
+            "letter_title": null,
+            "sender_persons": [
+                "RheinSchiffahrt-Aktiengesellschaft"
+            ],
+            "receiver_persons": [
+                "Dr. Max Vischer"
+            ]
+        }
+    },
+    "scores": {}
+}
