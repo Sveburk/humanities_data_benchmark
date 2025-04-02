@@ -27,6 +27,7 @@ logging.basicConfig(
     ]
 )
 
+
 def get_api_key(provider):
     """Get the API key for the provider."""
     api_key = os.getenv(f'{provider.upper()}_API_KEY')
@@ -84,11 +85,21 @@ def create_result_table(results):
         f.write(md_table)
 
 
-def main():
-    # Open Config File and run each test in it
+def main(limit_to: list[str] = None):
+    """ Main function to run benchmarks.
+
+    This function reads the configuration file, loads the benchmarks,
+    and runs each benchmark based on the configuration.
+    It also generates a Markdown table of results.
+
+    :param limit_to: Optional list of benchmark ids (such as T01, T99) to limit the execution to, defaults to None
+    """
+
     with open(CONFIG_FILE, newline='', encoding='utf-8') as csvfile:
         tests = csv.DictReader(csvfile)
         for test_config in tests:
+            if limit_to and test_config['id'] not in limit_to:
+                continue
             if test_config.get('legacy_test', 'false').lower() == 'false':
                 benchmark = load_benchmark(test_config)
                 if benchmark.is_runnable():

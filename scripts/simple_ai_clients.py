@@ -153,16 +153,24 @@ class AiApiClient:
             answer = message
 
         if self.api == 'mistral':
-            workload = [
-                {
-                    "content": prompt,
-                    "role": "user",
-                }
-            ]
+            content = [{"type": "text", "text": prompt}]
+            for img_path in self.image_resources:
+                with open(img_path, "rb") as image_file:
+                    base64_image = base64.b64encode(image_file.read()).decode("utf-8")
+                    data_uri = f"data:image/jpeg;base64,{base64_image}"
+                    content.append({
+                        "type": "image_url",
+                        "image_url": {
+                            "url": data_uri
+                        }
+                    })
 
             message = self.api_client.chat.complete(
+                messages=[{
+                    "role": "user",
+                    "content": content,
+                }],
                 model=model,
-                messages=workload
             )
             answer = message
 
