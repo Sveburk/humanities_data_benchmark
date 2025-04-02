@@ -59,7 +59,7 @@ class Benchmark(ABC):
         if not os.path.exists(os.path.join(self.benchmark_dir, "ground_truths")):
             logging.error(f"Ground truths directory not found: {self.benchmark_dir}")
             return False
-        if not self.provider in ["openai", "genai", "anthropic"]:
+        if not self.provider in ["openai", "genai", "anthropic", "mistral"]:
             logging.error(f"Invalid provider: {self.provider}")
             return False
         if not self.model:
@@ -74,7 +74,7 @@ class Benchmark(ABC):
         logging.debug(f"Loaded prompt from {prompt_path}")
         if self.has_file_information:
             try:
-                kwargs = {} # Add file information here
+                kwargs = {}  # Add file information here
                 return prompt.format(**kwargs)
             except KeyError as e:
                 return prompt
@@ -106,7 +106,6 @@ class Benchmark(ABC):
                 return {"error": "Invalid JSON format."}
         return {"response_text": ground_truth_text}
 
-
     def ask_llm(self,
                 image_paths: list[str]) -> dict:
         """ Ask the language model a question. """
@@ -135,7 +134,7 @@ class Benchmark(ABC):
 
     def get_request_answer_file_name(self, image_name):
         """ Get the path to the answer file. """
-        return os.path.join(self.get_request_answer_path(), self.get_request_name(image_name)+".json")
+        return os.path.join(self.get_request_answer_path(), self.get_request_name(image_name) + ".json")
 
     def get_request_render_path(self):
         date_str = datetime.now().strftime('%Y-%m-%d')
@@ -159,7 +158,7 @@ class Benchmark(ABC):
         logging.info(f"Saved answer to {file_name}")
 
     def save_benchmark_score(self,
-                                score: dict) -> None:
+                             score: dict) -> None:
         """ Save the benchmark score to a file. """
         date_str = datetime.now().strftime('%Y-%m-%d')
         save_path = os.path.join('..', "results", date_str, self.id, "scoring.json")
@@ -237,7 +236,7 @@ class Benchmark(ABC):
             image_paths = [os.path.join(images_dir, img) for img in img_files]
 
             if (regenerate_existing_results and os.path.exists(self.get_request_answer_file_name(image_name))) or \
-                (not os.path.exists(self.get_request_answer_file_name(image_name))):
+                    (not os.path.exists(self.get_request_answer_file_name(image_name))):
                 logging.info(f"Processing {self.id}, {image_name}...")
                 answer = self.ask_llm(image_paths)
                 self.save_request_answer(image_name, answer)
@@ -255,7 +254,6 @@ class Benchmark(ABC):
         benchmark_score = self.score_benchmark(benchmark_scores)
         self.save_benchmark_score(benchmark_score)
 
-
     def get_request_name(self, image_name: str) -> str:
         """ Get the name of the request. """
         return f"request_{self.id}_{os.path.splitext(image_name)[0]}"
@@ -271,9 +269,9 @@ class Benchmark(ABC):
 
     @abstractmethod
     def score_request_answer(self,
-                     image_name: str,
-                     response: dict,
-                     ground_truth: dict) -> dict:
+                             image_name: str,
+                             response: dict,
+                             ground_truth: dict) -> dict:
         """ Score the response. """
         pass
 
@@ -327,18 +325,18 @@ class DefaultBenchmark(Benchmark):
         return {"score": "niy"}
 
     def score_request_answer(self,
-                     image_name: str,
-                     response: dict,
-                     ground_truth: dict) -> dict:
+                             image_name: str,
+                             response: dict,
+                             ground_truth: dict) -> dict:
         """ Score the response. """
         return {}
 
     def create_request_render(self,
-                                image_name: str,
-                                result: dict,
-                                score: dict,
-                                truth) -> str:
-            """ Create a markdown render of the request. """
-            return ("### Result for image: {image_name}"
-                    "\n\n"
-                    "no details available")
+                              image_name: str,
+                              result: dict,
+                              score: dict,
+                              truth) -> str:
+        """ Create a markdown render of the request. """
+        return ("### Result for image: {image_name}"
+                "\n\n"
+                "no details available")
