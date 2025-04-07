@@ -4,7 +4,7 @@ import csv
 import json
 import os
 import logging
-from typing import Literal
+from typing import Literal, Optional
 
 from scripts.benchmark_base import Benchmark
 from benchmarks.metadata_extraction.category import Category
@@ -26,17 +26,20 @@ class MetadataExtraction(Benchmark):
         receiver_persons = Category(used=True)
 
         for score in all_scores:
-            send_date.tp += score["send_date_tp"]
-            send_date.fp += score["send_date_fp"]
-            send_date.fn += score["send_date_fn"]
+            try:
+                send_date.tp += score["send_date_tp"]
+                send_date.fp += score["send_date_fp"]
+                send_date.fn += score["send_date_fn"]
 
-            sender_persons.tp += score["sender_persons_tp"]
-            sender_persons.fp += score["sender_persons_fp"]
-            sender_persons.fn += score["sender_persons_fn"]
+                sender_persons.tp += score["sender_persons_tp"]
+                sender_persons.fp += score["sender_persons_fp"]
+                sender_persons.fn += score["sender_persons_fn"]
 
-            receiver_persons.tp += score["receiver_persons_tp"]
-            receiver_persons.fp += score["receiver_persons_fp"]
-            receiver_persons.fn += score["receiver_persons_fn"]
+                receiver_persons.tp += score["receiver_persons_tp"]
+                receiver_persons.fp += score["receiver_persons_fp"]
+                receiver_persons.fn += score["receiver_persons_fn"]
+            except KeyError:
+                continue
 
         categories = [send_date, sender_persons, receiver_persons]
         f1_macro = self._get_f1_macro(categories)
@@ -50,7 +53,7 @@ class MetadataExtraction(Benchmark):
                              response: dict,
                              ground_truth: dict,
                              inferred_from_function=False,
-                             inferred_from_correspondence=False) -> dict:
+                             inferred_from_correspondence=False) -> Optional[dict]:
         """ Score the answer.
 
         :param image_name: the name of the image
@@ -70,6 +73,13 @@ class MetadataExtraction(Benchmark):
                                                       image_name=image_name)
         ground_truth_letter = self._initialize_letter(raw_letter=ground_truth,
                                                       image_name=image_name)
+
+        """ if self.rules is not None:
+            logging.info(self.rules)
+            logging.info(ground_truth_letter.has_signatures)
+            if self.rules["skip_signatures"] is True and ground_truth_letter.has_signatures is True:
+                logging.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+                return {"skip_signatures"}"""
 
         score = self._score_send_date(ground_truth_letter=ground_truth_letter,
                                       predicted_letter=response_letter)
@@ -161,17 +171,44 @@ class MetadataExtraction(Benchmark):
                 alt_names = "None"
             persons_table += f"| {person.name} | {alt_names} |\n"
 
+
         render = (
             f"### Result for {response_letter.document_number}\n"
             f"{scoring_table}\n"
             f"{persons_table}\n"
+            f"#### Rules:\n"
             f"`inferred_from_function`: {inferred_from_function}\n\n"
-            f"`inferred_from_correspondence`: {inferred_from_correspondence}\n"
+            f"`inferred_from_correspondence`: {inferred_from_correspondence}\n\n"
         )
+
+        if self.rules is not None:
+            for key, value in self.rules.items():
+                render += f"`{key}`: {value}\n\n"
 
         # todo: display all images in the render
 
         return render
+
+    def skip_image(self,
+                   image_name: str) -> bool:
+        """ Skip the image if the rules say so."""
+
+        try:
+            if self.rules["skip_signatures"] is True:
+                ground_truth = self.load_ground_truth(image_name)
+                ground_truth_letter = self._initialize_letter(raw_letter=ground_truth,
+                                                              image_name=image_name)
+                if ground_truth_letter.has_signatures is True:
+                    return True
+            elif self.rules["skip_non_signatures"] is True:
+                ground_truth = self.load_ground_truth(image_name)
+                ground_truth_letter = self._initialize_letter(raw_letter=ground_truth,
+                                                              image_name=image_name)
+                if ground_truth_letter.has_signatures is False:
+                    return True
+
+        except TypeError:
+            return False
 
     def update_ground_truth(self) -> None:
         """ Update the ground truth. """
@@ -481,7 +518,8 @@ class MetadataExtraction(Benchmark):
                     "letter_title": self._split_by_pipe(row["letter_title"]),
                     "send_date": self._split_by_pipe(row["send_date"]),
                     "sender_persons": self._split_by_pipe(row["sender_persons"]),
-                    "receiver_persons": self._split_by_pipe(row["receiver_persons"])
+                    "receiver_persons": self._split_by_pipe(row["receiver_persons"]),
+                    "has_signatures": row["has_signatures"],
                 }
 
                 doc_num = row["document_number"]

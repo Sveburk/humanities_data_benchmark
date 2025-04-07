@@ -1,24 +1,26 @@
-id,name,provider,model,dataclass,temperature,role_description,prompt_file,legacy_test
-T01,test_benchmark,openai,gpt-4o,,,,,false
-T02,test_benchmark,genai,gemini-2.0-flash,,,,,false
-T03,test_benchmark,anthropic,claude-3-5-sonnet-20241022,,,,,false
-T04,test_benchmark2,openai,gpt-4o,,0.5,You are a Historian,a_prompt.txt,false
-T05,test_benchmark2,genai,gemini-2.0-flash,,0.5,You are a Historian,a_prompt.txt,false
-T06,test_benchmark2,anthropic,claude-3-5-sonnet-20241022,,0.5,You are a Historian,a_prompt.txt,false
-T07,bibliographic_data,openai,gpt-4o,Document,0.0,You are a Historian,,false
-T08,bibliographic_data,genai,gemini-2.0-flash,Document,0.0,You are a Historian,,false
-T09,bibliographic_data,anthropic,claude-3-5-sonnet-20241022,Document,0.0,You are a Historian,,false
-T10,metadata_extraction,openai,gpt-4o,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T11,metadata_extraction,openai,gpt-4.5-preview,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T12,metadata_extraction,openai,gpt-4o-mini,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T13,metadata_extraction,genai,gemini-2.0-flash,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T14,metadata_extraction,genai,gemini-exp-1206,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T15,metadata_extraction,genai,gemini-1.5-flash,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T16,metadata_extraction,genai,gemini-1.5-pro,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T17,metadata_extraction,anthropic,claude-3-7-sonnet-20250219,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T18,metadata_extraction,anthropic,claude-3-5-sonnet-20241022,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T19,metadata_extraction,genai,gemini-2.5-pro-exp-03-25,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T20,metadata_extraction,genai,gemini-2.0-flash-lite,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T21,metadata_extraction,genai,gemini-2.0-pro-exp-02-05,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T22,fraktur,genai,gemini-2.5-pro-exp-03-25,"",0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,false
-T23,metadata_extraction,mistral,pixtral-large-latest,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history. You only return valid JSON an no other text.,prompt.txt,false
+id,name,provider,model,dataclass,temperature,role_description,prompt_file,rules,legacy_test
+T01,test_benchmark,openai,gpt-4o,,,,,,false
+T02,test_benchmark,genai,gemini-2.0-flash,,,,,,false
+T03,test_benchmark,anthropic,claude-3-5-sonnet-20241022,,,,,,false
+T04,test_benchmark2,openai,gpt-4o,,0.5,You are a Historian,a_prompt.txt,,false
+T05,test_benchmark2,genai,gemini-2.0-flash,,0.5,You are a Historian,a_prompt.txt,,false
+T06,test_benchmark2,anthropic,claude-3-5-sonnet-20241022,,0.5,You are a Historian,a_prompt.txt,,false
+T07,bibliographic_data,openai,gpt-4o,Document,0.0,You are a Historian,,,false
+T08,bibliographic_data,genai,gemini-2.0-flash,Document,0.0,You are a Historian,,,false
+T09,bibliographic_data,anthropic,claude-3-5-sonnet-20241022,Document,0.0,You are a Historian,,,false
+T10,metadata_extraction,openai,gpt-4o,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T11,metadata_extraction,openai,gpt-4.5-preview,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T12,metadata_extraction,openai,gpt-4o-mini,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T13,metadata_extraction,genai,gemini-2.0-flash,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T14,metadata_extraction,genai,gemini-exp-1206,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T15,metadata_extraction,genai,gemini-1.5-flash,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T16,metadata_extraction,genai,gemini-1.5-pro,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T17,metadata_extraction,anthropic,claude-3-7-sonnet-20250219,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T18,metadata_extraction,anthropic,claude-3-5-sonnet-20241022,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T19,metadata_extraction,genai,gemini-2.5-pro-exp-03-25,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T20,metadata_extraction,genai,gemini-2.0-flash-lite,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T21,metadata_extraction,genai,gemini-2.0-pro-exp-02-05,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T22,fraktur,genai,gemini-2.5-pro-exp-03-25,"",0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,,false
+T23,metadata_extraction,mistral,pixtral-large-latest,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history. You only return valid JSON an no other text.,prompt.txt,,false
+T24,metadata_extraction,anthropic,claude-3-7-sonnet-20250219,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,"{""skip_signatures"": true, ""skip_non_signatures"": false}",false
+T25,metadata_extraction,anthropic,claude-3-7-sonnet-20250219,Document,0.0,You are a historian with keyword knowledge and an expert in the field of 20th century Swiss history,prompt.txt,"{""skip_signatures"": false, ""skip_non_signatures"": true}",false

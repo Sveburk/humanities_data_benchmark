@@ -109,4 +109,4 @@ def main(limit_to: list[str] = None):
 
 
 if __name__ == "__main__":
-    main()
+    main(limit_to=["T17", "T24", "T25"])

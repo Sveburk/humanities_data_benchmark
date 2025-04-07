@@ -123,6 +123,13 @@ With scores for each letter in place, we can calculate the overall performance o
 - F1-micro is the harmonic mean of precision and recall across all categories.
 - F1-macro is the average of F1 scores across all categories.
 
+### Rule parameters
+- `inferred_from_function`: If true, the person is inferred from their function and the date (e.g., a letter from the Basler Personenschifffahrtsgesellschaft in 1925 signed by "der Präsident" was penned by Max Vischer-von Planta ).
+- `inferred_from_correspondence`: If true, the person is inferred from the correspondence history (e.g., "referring to your letter from last week").
+- `skip_signatures`: If true, then letters with signatures are not scored.
+- `skip_non_signatures`: If true, then letters without signatures are not scored.
+
+
 ## To Dos
 
 - [ ] Add more fields to the metadata schema, namely `sender_organization` (inscribed and normalized), `receiver_organization` (inscribed and normalized),  fields for entities mentioned (persons, places, organizations, ships; inscribed and normalized).		
