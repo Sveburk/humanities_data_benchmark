@@ -44,6 +44,14 @@ This page provides an overview of all benchmark tests.Click on the test name to 
   </tr></thead>
   <tbody>
 <tr>
+    <td>2025-04-07</td>
+    <td></td>
+    <td></td>
+    <td><a href='/archive/2025-04-07/T17'><span class='test-square' style='background-color: #9b59b6;'>T17</span></a>&nbsp;<a href='/archive/2025-04-07/T24'><span class='test-square' style='background-color: #e74c3c;'>T24</span></a>&nbsp;<a href='/archive/2025-04-07/T25'><span class='test-square' style='background-color: #ff6600;'>T25</span></a>&nbsp;</td>
+    <td></td>
+    <td></td>
+</tr>
+<tr>
     <td>2025-04-02</td>
     <td></td>
     <td><a href='/archive/2025-04-02/T22'><span class='test-square' style='background-color: #2980b9;'>T22</span></a>&nbsp;</td>

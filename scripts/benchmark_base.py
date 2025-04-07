@@ -33,6 +33,10 @@ class Benchmark(ABC):
         self.request_render = ""
         self.dataclass_name = config['dataclass']
         self.dataclass = self.load_dataclass()
+        if config['rules'] == "":
+            self.rules = None
+        else:
+            self.rules = json.loads(config['rules'])
 
         kwargs = {
             "api": self.provider,
@@ -234,7 +238,9 @@ class Benchmark(ABC):
         benchmark_scores = []
         for image_name, img_files in image_groups.items():
             image_paths = [os.path.join(images_dir, img) for img in img_files]
-
+            if self.skip_image(image_name):
+                logging.info(f"Skipping {image_name} as per configuration.")
+                continue
             if (regenerate_existing_results and os.path.exists(self.get_request_answer_file_name(image_name))) or \
                     (not os.path.exists(self.get_request_answer_file_name(image_name))):
                 logging.info(f"Processing {self.id}, {image_name}...")
@@ -306,6 +312,11 @@ class Benchmark(ABC):
 
     def has_file_information(self) -> bool:
         """If the prompt file contains file information."""
+        return False
+
+    def skip_image(self,
+                   image_name: str) -> bool:
+        """ Skip image. """
         return False
 
     def update_required(self) -> bool:
