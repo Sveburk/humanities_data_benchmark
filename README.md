@@ -91,7 +91,7 @@ The directory should have the following structure:
 │   │   │   ├── ...
 ```
 
-- Create a `README.md` file with a description of the benchmark. Make sure to include a dataset description
+- Create a `README.md` file with a description of the benchmark by adapting the [`README_TEMPLATE.md`](benchmarks/README_TEMPLATE.md) file. Make sure to include a dataset description
 and a description of the task that the model should perform. Explain your evaluation criteria and how the
 results are scored. 
 - Add images to the `images` directory. You need at least one image. Per default, one image is used with one request.

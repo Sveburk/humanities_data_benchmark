@@ -5,6 +5,7 @@
 - [Creator](#creator)
 - [Dataset Description](#dataset-description)
 - [Task Description](#task-description)
+- [Ground Truth](#ground-truth)
 - [Evaluation Criteria](#evaluation-criteria)
 - [Results](#results)
 - [Observations](#observations)
@@ -31,7 +32,26 @@ The dataset contains [number] images of [describe what the images contain]. Each
 
 ## Ground Truth
 
-Models should output [describe the expected output format, e.g., "a JSON structure with the following fields...", "a list of extracted entities categorized by type", etc.].
+### Ground Truth Creation
+[Explain how the ground truth was created and which guidelines were used, e.g., "The ground truth was manually annotated by domain experts", "The ground truth was created using a semi-automated process and then verified by experts", etc.]
+
+### Ground Truth Format
+The ground truth is stored in [format, e.g., "JSON files", "CSV files", etc.] with the following structure:
+
+```json
+{
+  "field1": "ground truth value",
+  "field2": ["ground truth value 1", "ground truth value 2"],
+  "field3": {
+    "subfield1": "ground truth value",
+    "subfield2": "ground truth value"
+  }
+}
+```
+## Scoring
+
+### Evaluation Criteria
+The models are tasked with [clearly describe what the models are expected to do, e.g., "extracting named entities", "categorizing text segments", "transcribing handwritten text", etc.]. Models should output [describe the expected output format, e.g., "a JSON structure with the following fields...", "a list of extracted entities categorized by type", etc.].
 
 ```json
 {
@@ -44,34 +64,11 @@ Models should output [describe the expected output format, e.g., "a JSON structu
 }
 ```
 
-## Scoring
-The models are tasked with [clearly describe what the models are expected to do, e.g., "extracting named entities", "categorizing text segments", "transcribing handwritten text", etc.].
-
-## Evaluation Criteria
-Responses are evaluated based on:
-
-- **[Criterion 1]**: [Explain how this criterion is evaluated]
-- **[Criterion 2]**: [Explain how this criterion is evaluated]
-- **[Criterion 3]**: [Explain how this criterion is evaluated]
-
 ### Scoring Methodology
-The scoring methodology works as follows:
-
-1. [Explain step 1 of the scoring process]
-2. [Explain step 2 of the scoring process]
-3. [Explain step 3 of the scoring process]
-
-The final score is calculated by [explain how the final score is calculated, e.g., "taking the average of scores across all images", "computing a weighted average where criterion X has weight Y", etc.].
+[Explain how the scoring is done, e.g., "The extracted data is compared to the ground truth using fuzzy string matching", "The model's output is evaluated based on precision, recall, and F1 score", etc.]
 
 ### Example Scoring
-To illustrate the scoring methodology, here's an example of scoring for one document:
-
-| Metric | Ground Truth | Prediction | Score |
-|--------|--------------|------------|-------|
-| Metric 1 | Value | Value | 0.95 |
-| Metric 2 | Value | Value | 0.75 |
-| Metric 3 | Value | Value | 0.80 |
-| **Overall** | | | **0.83** |
+[Include an example scoring]
 
 ## Observations
 
