@@ -38,6 +38,8 @@ nav:
     - T21: tests/T21.md
     - T22: tests/T22.md
     - T23: tests/T23.md
+    - T24: tests/T24.md
+    - T25: tests/T25.md
 
   - Benchmarks:
     - bibliographic_data: benchmarks/bibliographic_data.md
@@ -47,6 +49,10 @@ nav:
     - test_benchmark2: benchmarks/test_benchmark2.md
   - Archive:
     - Overview: archive/overview.md
+    - 2025-04-07:
+        - T17: archive/2025-04-07/T17.md
+        - T24: archive/2025-04-07/T24.md
+        - T25: archive/2025-04-07/T25.md
     - 2025-04-02:
         - T22: archive/2025-04-02/T22.md
         - T23: archive/2025-04-02/T23.md
