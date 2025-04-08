@@ -74,13 +74,6 @@ class MetadataExtraction(Benchmark):
         ground_truth_letter = self._initialize_letter(raw_letter=ground_truth,
                                                       image_name=image_name)
 
-        """ if self.rules is not None:
-            logging.info(self.rules)
-            logging.info(ground_truth_letter.has_signatures)
-            if self.rules["skip_signatures"] is True and ground_truth_letter.has_signatures is True:
-                logging.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-                return {"skip_signatures"}"""
-
         score = self._score_send_date(ground_truth_letter=ground_truth_letter,
                                       predicted_letter=response_letter)
 
@@ -176,7 +169,7 @@ class MetadataExtraction(Benchmark):
             f"### Result for {response_letter.document_number}\n"
             f"{scoring_table}\n"
             f"{persons_table}\n"
-            f"#### Rules:\n"
+            f"#### Rules\n"
             f"`inferred_from_function`: {inferred_from_function}\n\n"
             f"`inferred_from_correspondence`: {inferred_from_correspondence}\n\n"
         )
